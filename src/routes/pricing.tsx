@@ -57,7 +57,7 @@ export default function Pricing() {
         <Column class={"bg-gray-100 dark:bg-white rounded-2xl p-4 drop-shadow-lg m-3"}>
           <Row>
             <Badge class={"bg-purple-800 dark:bg-purple-800 mx-2"}>BEST VALUE</Badge>
-            <Badge class={"bg-green-800 dark:bg-green-800 mx-2"}>SAVE 18%</Badge>
+            <Badge class={"bg-green-800 dark:bg-green-800 mx-2"}>+2 FREE MONTHS</Badge>
           </Row>
           <Pg class={"text-2xl text-start m-4 font-bold text-stone-800 dark:text-stone-800"} i>Annually</Pg>
           <Header size={4} class={"text-start mt-1 mb-2 w-fit text-stone-800 dark:text-stone-800"}>
@@ -85,7 +85,7 @@ export default function Pricing() {
           <PackFeature>Full access to the application</PackFeature>
           <PackFeature>Full access to the browser extension</PackFeature>
           <PackFeature>Install on unlimited computers</PackFeature>
-          <NoPackFeature>Access to periodic updates</NoPackFeature>
+          <PackFeature>Access to periodic updates</PackFeature>
           <NoPackFeature>Priority support</NoPackFeature>
         </Column>
       </Row>

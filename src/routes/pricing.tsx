@@ -39,7 +39,7 @@ export default function Pricing() {
       <Divider class={"mx-8 my-12"}/>
 
       <Row class={"center justify-around"}>
-        <Column class={"bg-gray-100 dark:bg-white rounded-2xl p-4 drop-shadow-lg"}>
+        <Column class={"bg-gray-100 dark:bg-white rounded-2xl p-4 drop-shadow-lg m-3"}>
           <Pg class={"text-2xl text-start m-4 font-bold text-stone-800 dark:text-stone-800"} i>Monthly</Pg>
           <Header size={4} class={"text-start mt-1 mb-2 w-fit text-stone-800 dark:text-stone-800"}>
             <span class={"text-sm"}>$</span>
@@ -54,7 +54,7 @@ export default function Pricing() {
           <PackFeature>Priority support</PackFeature>
         </Column>
 
-        <Column class={"bg-gray-100 dark:bg-white rounded-2xl p-4 drop-shadow-lg"}>
+        <Column class={"bg-gray-100 dark:bg-white rounded-2xl p-4 drop-shadow-lg m-3"}>
           <Row>
             <Badge class={"bg-purple-800 dark:bg-purple-800 mx-2"}>BEST VALUE</Badge>
             <Badge class={"bg-green-800 dark:bg-green-800 mx-2"}>SAVE 18%</Badge>
@@ -74,7 +74,7 @@ export default function Pricing() {
           <PackFeature>Priority support</PackFeature>
         </Column>
 
-        <Column class={"bg-gray-100 dark:bg-green-50 rounded-2xl p-4 drop-shadow-lg"}>
+        <Column class={"bg-gray-100 dark:bg-white rounded-2xl p-4 drop-shadow-lg m-3"}>
           <Pg class={"text-2xl text-start m-4 font-bold text-stone-800 dark:text-stone-800"}>One-time purchase</Pg>
           <Header size={4} class={"text-start mt-1 mb-2 w-fit text-stone-800 dark:text-stone-800"}>
             <span class={"text-sm"}>$</span>

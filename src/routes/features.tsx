@@ -64,12 +64,12 @@ export default function Features() {
       <Spacer class={"my-8"}/>
 
       <Row class={"justify-around"}>
-        <Column>
-          <Row>
+        <Column class={"items-center"}>
+          <Row class={"items-center"}>
             <Header class={"text-center my-4 me-6"} size={4}>
               Create sleep rituals
             </Header>
-            <Badge class={"mt-12 justify-self-center"}>NEW!</Badge>
+            <Badge>NEW!</Badge>
           </Row>
           <Feature>Change the wallpaper when it's near bedtime</Feature>
           <Feature>Change the system colors when it's near bedtime</Feature>
@@ -85,11 +85,11 @@ export default function Features() {
       <Row class={"justify-around"}>
         <img src={"https://i.imgur.com/jaaXftv.png"} alt="Cross-platform" class={"w-1/2 rounded-lg"}/>
         <Column>
-          <Row>
+          <Row class={"items-center"}>
             <Header class={"text-center my-4 me-6"} size={4}>
               Cross-platform
             </Header>
-            <Badge class={"mt-2"}>NEW!</Badge>
+            <Badge>NEW!</Badge>
           </Row>
           <Feature>Tested on Windows 11</Feature>
           <Feature>

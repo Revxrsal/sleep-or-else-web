@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*font-family: 'Roboto', sans-serif;*/
+    font-family: "Segoe UI", Arial, sans-serif;
+    @apply m-0 overflow-x-hidden
+    bg-stone-200 dark:bg-stone-900;
+}
+
+main {
+    @apply relative flex flex-col pt-[150px] pb-[89px] min-w-full min-h-screen;
+}
+
+@layer utilities {
+    .size-3\/4 {
+        height: 75%;
+        width: 75%;
+    }
+}
+
+@layer components {
+
+    .text-on-bg {
+        @apply text-stone-800 dark:text-stone-200;
+    }
+
+    .text-on-container {
+        @apply text-stone-200 dark:text-stone-800;
+    }
+
+    .text {
+        @apply selection:bg-yellow-500 dark:selection:bg-yellow-700
+        selection:bg-opacity-50 dark:selection:bg-opacity-50;
+    }
+
+    .fill {
+        @apply fill-stone-800 dark:fill-stone-200;
+    }
+
+    .center {
+        @apply items-center content-center text-center;
+    }
+
+    .image-non-draggable {
+        user-drag: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .yellow-hover {
+        @apply hover:text-stone-100 hover:scale-105 hover:ring-2 hover:ring-yellow-800 transition-all cursor-pointer;
+    }
+}
+
+span.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 650ms linear;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

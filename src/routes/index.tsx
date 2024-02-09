@@ -137,7 +137,7 @@ export default function Home() {
         description={"Specify the duration of the restriction period before your bedtime"}
       />
       <Screenshot
-        label={"Establish thek rules beforehand"}
+        label={"Establish the rules beforehand"}
         src={"https://i.imgur.com/zb9yG49.png"}
         description={"Restrict the applications and websites you can access near bedtime"}
       />

@@ -1,15 +1,17 @@
 // @refresh reload
 import {Router} from "@solidjs/router";
 import {FileRoutes} from "@solidjs/start";
-import {Suspense} from "solid-js";
+import {onMount, Suspense} from "solid-js";
 import "./app.css";
 import Row from "./components/layout/Row";
 import {SignUpButton} from "~/components/input/SignUpButton";
 import {MetaProvider} from "@solidjs/meta";
 import Pg from "~/components/typography/Pg";
 import Spacer from "~/components/decoration/Spacer";
+import {inject} from '@vercel/analytics';
 
 export default function App() {
+  onMount(inject);
   return (
     <Router
       root={(props) => (

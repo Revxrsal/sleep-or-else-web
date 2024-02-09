@@ -25,7 +25,6 @@ export function OutlinedButton(props: ButtonProps) {
 }
 
 export default function Button(props: ButtonProps) {
-  onMount(() => console.log(props))
   const [local, bProps] = splitProps(props, ["class", "onClick"]);
   return <button
     onClick={event => {

@@ -16,12 +16,14 @@ export default function App() {
     <Router
       root={(props) => (
         <MetaProvider>
-          <nav class={"w-full bg-opacity-10 bg-gray-300 dark:bg-stone-900 flex flex-row justify-between text-lg"}>
-            <Row class={"justify-between m-4"}>
-              <img src="/logo.png" alt="App logo" class={"w-12 h-12 drop-shadow-lg"}/>
-              <Spacer class={"mx-2"}/>
-              <Pg class={"font-semibold"}>Sleep, or else...</Pg>
-            </Row>
+          <nav class={"w-full dark:bg-stone-900 flex flex-row justify-between text-lg"}>
+            <a href="/">
+              <Row class={"justify-between m-6 cursor-pointer"}>
+                <img src="/logo.png" alt="App logo" class={"w-14 h-14 drop-shadow-lg"}/>
+                <Spacer class={"mx-2"}/>
+                <Pg class={"font-semibold text-2xl"}>Sleep, or else...</Pg>
+              </Row>
+            </a>
             <Row>
               <a href="/">
                 <Pg class={"p-4 font-semibold"}>Home</Pg>

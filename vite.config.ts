@@ -1,3 +1,14 @@
-import { defineConfig } from "@solidjs/start/config";
+import {defineConfig} from "@solidjs/start/config";
 
-export default defineConfig({});
+export default defineConfig({
+  start: {
+    ssr: false,
+    server: {preset: "vercel"}
+  },
+
+  server: {
+    fs: {
+      allow: ["../.."]
+    }
+  },
+});

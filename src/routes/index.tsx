@@ -128,12 +128,12 @@ export default function Home() {
       <Divider class={"mx-10 mt-12"}/>
       <Screenshot
         label={"Set up a bedtime. And this time, stick to it."}
-        src={"/screenshots/set-time-screen.png"}
+        src={"https://i.imgur.com/sJzh4oU.png"}
         description={"Set the time your computer will shut-down"}
       />
       <Screenshot
         label={"Ease into sleep"}
-        src={"/screenshots/set-warning-screen.png"}
+        src={"https://i.imgur.com/gqLM54Z.png"}
         description={"Specify the duration of the restriction period before your bedtime"}
       />
       <Screenshot

@@ -4,12 +4,17 @@ import Pg from "~/components/typography/Pg";
 import Column from "~/components/layout/Column";
 import Divider from "~/components/decoration/Divider";
 import {OutlinedButton} from "~/components/input/Button";
-import Spacer from "~/components/decoration/Spacer";
 import {useNavigate} from "@solidjs/router";
 import {SignUpButton} from "~/components/input/SignUpButton";
+import Flex from "~/components/layout/Flex";
+import {JSXElement} from "solid-js";
+import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
 
 function TiredGuy() {
-  return <Row class={"justify-around m-12"}>
+  return <DisplayScreenshotWithFeatures
+    image={<img src="/tiredness.png" alt="A tired man" class={"w-40 h-40 md:w-48 md:h-48 lg:w-80 lg:h-80"}/>}
+    alternateIndex={1}
+  >
     <Column>
       <Header size={5}>
         Say good bye to eye bags
@@ -18,20 +23,16 @@ function TiredGuy() {
         <span class={"italic"}>I'm going to stick this time</span>, or so we say.
       </Pg>
     </Column>
-    <img
-      src="/tiredness.png"
-      alt="A tired man"
-      class={"w-40 h-40 md:w-48 md:h-48 lg:w-80 lg:h-80"}
-    />
-  </Row>
+  </DisplayScreenshotWithFeatures>
 }
 
 function Sleepy() {
-  return <Row class={"justify-around m-12"}>
-    <img src="/sleeping.png"
-         alt="A boy sleeping"
-         class={"w-40 h-40 md:w-48 md:h-48 lg:w-80 lg:h-80"}
-    />
+  return <DisplayScreenshotWithFeatures
+    image={<img src="/sleeping.png"
+                alt="A boy sleeping"
+                class={"w-40 h-40 md:w-48 md:h-48 lg:w-80 lg:h-80"}/>}
+    alternateIndex={2}
+  >
     <Column>
       <Header size={5}>
         Move beyond good intentions
@@ -40,7 +41,7 @@ function Sleepy() {
         Leave no wiggle room. Add rituals and routines
       </Pg>
     </Column>
-  </Row>
+  </DisplayScreenshotWithFeatures>
 }
 
 function Screenshot(
@@ -52,54 +53,50 @@ function Screenshot(
     alt?: string
   }
 ) {
-  return <Column class={"m-12 center"}>
-    <Header size={6} class={"text-center"}>
+  return <Column class={"m-6 mt-4 lg:m-12 center"}>
+    <Header size={3} class={"text-center text-3xl lg:text-6xl m-4 lg:m-8"}>
       {props.label}
     </Header>
-    {props.description && <Pg class={"text-3xl text-center"}>{props.description}</Pg>}
+    {props.description && <Pg class={"text-xl lg:text-3xl text-center"}>{props.description}</Pg>}
     <img src={props.src}
          alt={props.alt}
-         class={`size-3/4 aspect-auto rounded-2xl ${props.class || ""}`}
+         class={`lg:size-3/4 aspect-auto rounded-2xl ${props.class || ""}`}
     />
-    <Divider class={"mx-12"}/>
+    <Divider class={"mx-12 w-full"}/>
   </Column>
 }
 
+function WIDPart(props: {
+  index: number,
+  src: string,
+  alt: string,
+  children: JSXElement
+}) {
+  return <Row class={"my-4"}>
+    <Pg class={"rounded-full p-8 text-3xl"}>{props.index}</Pg>
+    <img src={props.src} alt={props.alt} class={"w-16 h-16"}/>
+    <Pg class={"px-8 text-2xl text-wrap"}>
+      {props.children}
+    </Pg>
+  </Row>
+}
+
 function WhatItDoes() {
+  let index = 1
   return <>
-    <Header class={"text-center"} size={7}>What it does</Header>
-    <Column>
-      <Row class={"center justify-around"}>
-        <img
-          src={"/clock.png"}
-          alt={"Time"}
-          class={"w-24 h-24"}
-        />
-        <img
-          src={"/barrier.png"}
-          alt={"Time"}
-          class={"w-24 h-24"}
-        />
-        <img
-          src={"/shutdown.png"}
-          alt={"Time"}
-          class={"w-24 h-24"}
-        />
-      </Row>
-      <Spacer class={"my-8"}/>
-      <Row class={"center align-top justify-around"}>
-        <Pg class={"text-2xl text-wrap w-1/4"}>
-          Set the time you want to sleep in
-        </Pg>
-        <Pg class={"text-2xl text-wrap w-1/4"}>
-          Before this time comes, your computer will enter a restriction
-          period, where certain apps and websites will be inaccessible, to allow you
-          to ease into sleep
-        </Pg>
-        <Pg class={"text-2xl text-wrap w-1/4"}>
-          When it's bedtime, your computer will forcibly shut-down
-        </Pg>
-      </Row>
+    <Header class={"text-center text-5xl lg:text-7xl"}>What it does</Header>
+    <Column class={"justify-around "}>
+      <WIDPart index={index++} src={"/clock.png"} alt={"Time"}>
+        Set the time you want to sleep in
+      </WIDPart>
+      <WIDPart index={index++} src={"/barrier.png"} alt={"Blocking apps"}>
+        Before this time comes, your computer will enter a restriction
+        period, where certain apps and websites will be inaccessible, to allow you
+        to ease into sleep
+      </WIDPart>
+      <WIDPart index={index++} src={"/shutdown.png"} alt={"Time"}>
+        When it's bedtime, your computer will forcibly shut-down
+      </WIDPart>
     </Column>
   </>;
 }
@@ -109,17 +106,17 @@ export default function Home() {
   return (
     <main>
       <title>Sleep, or else - A better way to enforce sleep schedules</title>
-      <Header class={"text-center"} size={9}>Sleep, or else...</Header>
-      <Pg class={"text-center text-3xl"}>
+      <Header class={"text-center text-5xl md:text-7xl lg:text-9xl mt-0"}>Sleep, or else...</Header>
+      <Pg class={"px-3 text-center text-2xl lg:text-3xl"}>
         The ultimate application for making sure you stick to your sleep schedule
       </Pg>
-      <Pg class={"text-center text-xl mt-12 text-yellow-800 dark:text-yellow-200"}>
+      <Pg class={"px-3 text-center text-xl mt-12 text-yellow-800 dark:text-yellow-200"}>
         Sign up for pre-release for a <span class={"font-bold"}>15% off</span> the first year!
       </Pg>
-      <Row class={"items-center justify-center center m-8"}>
+      <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
         <SignUpButton/>
         <OutlinedButton onClick={() => navigate("/features", {replace: true})}>Explore features</OutlinedButton>
-      </Row>
+      </Flex>
       <Divider class={"m-12"}/>
       <TiredGuy/>
       <Sleepy/>
@@ -154,13 +151,13 @@ export default function Home() {
         class={"size-[60%] my-12 center "}
       />
       <Divider class={"mx-8"}/>
-      <Header size={5} class={"text-center"}>
+      <Header size={3} class={"text-center lg:text-5xl"}>
         Sign up for pre-release now, and be an early adopter!
       </Header>
       <Pg class={"text-center text-xl text-yellow-800 dark:text-yellow-200 mx-8"}>
         Those who sign up for pre-release get <span class={"font-bold"}>15% off</span> the first year!
       </Pg>
-      <Row class={"items-center justify-center center m-8 mx-8"}>
+      <Row class={"items-center justify-center center m-8 mx-8 scale-[85%] lg:scale-100"}>
         <SignUpButton/>
       </Row>
     </main>

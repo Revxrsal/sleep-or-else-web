@@ -9,6 +9,7 @@ import {JSXElement} from "solid-js";
 import Spacer from "~/components/decoration/Spacer";
 import Badge from "~/components/decoration/Badge";
 import Cross from "~/components/icons/Cross";
+import Flex from "~/components/layout/Flex";
 
 function PackFeature(props: {
   children: JSXElement
@@ -36,9 +37,9 @@ export default function Pricing() {
       <Header class={"text-center my-0"}>
         Pricing
       </Header>
-      <Divider class={"mx-8 my-12"}/>
+      <Divider class={"mx-8 my-8 mb-0 lg:my-12"}/>
 
-      <Row class={"center justify-around"}>
+      <Flex class={"flex-col lg:flex-row center justify-around scale-[85%] lg:scale-100"}>
         <Column class={"bg-gray-100 dark:bg-white rounded-2xl p-4 drop-shadow-lg m-3"}>
           <Pg class={"text-2xl text-start m-4 font-bold text-stone-800 dark:text-stone-800"} i>Monthly</Pg>
           <Header size={4} class={"text-start mt-1 mb-2 w-fit text-stone-800 dark:text-stone-800"}>
@@ -88,7 +89,7 @@ export default function Pricing() {
           <PackFeature>Access to periodic updates</PackFeature>
           <NoPackFeature>Priority support</NoPackFeature>
         </Column>
-      </Row>
+      </Flex>
 
       <Divider class={"mx-8 mt-12"}/>
 

@@ -7,6 +7,7 @@ import Divider from "~/components/decoration/Divider";
 import Spacer from "~/components/decoration/Spacer";
 import Badge from "~/components/decoration/Badge";
 import {SignUpButton} from "~/components/input/SignUpButton";
+import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
 
 function Bullet() {
   return <span class={"font-bold"}>•</span>
@@ -22,7 +23,9 @@ function Feature(props: {
   )
 }
 
+
 export default function Features() {
+  let alternateIndex = 0
   return (
     <main class={"pt-4 mt-4 px-4"}>
       <title>Feature list - Sleep or else</title>
@@ -30,7 +33,11 @@ export default function Features() {
         Features
       </Header>
       <Divider class={"mx-8 my-12"}/>
-      <Row class={"justify-around"}>
+
+      <DisplayScreenshotWithFeatures
+        alternateIndex={alternateIndex++}
+        image={<img src="https://i.imgur.com/jVoLkGI.png" alt="Blocks" class={""}/>}
+      >
         <Column>
           <Header class={"text-center my-4"} size={4}>
             Leave no wiggle room
@@ -41,30 +48,33 @@ export default function Features() {
           <Feature>Choose whether you'd like to minimize apps or exit them</Feature>
           <Feature>Ability to switch between whitelist and blacklist mode </Feature>
         </Column>
-        <img src="https://i.imgur.com/jVoLkGI.png" alt="Blocks" class={"w-1/2"}/>
-      </Row>
+      </DisplayScreenshotWithFeatures>
 
       <Spacer class={"my-8"}/>
 
-      <Row class={"justify-around"}>
-        <img src="https://i.imgur.com/k5BvFCX.png" alt="Restrictions" class={"w-1/2"}/>
+      <DisplayScreenshotWithFeatures
+        alternateIndex={alternateIndex++}
+        image={<img src="https://i.imgur.com/k5BvFCX.png" alt="Restrictions" class={""}/>}
+      > <Column>
+        <Header class={"text-center my-4"} size={4}>
+          Customize the restrictiveness
+        </Header>
+        <Feature>Block the task manager</Feature>
+        <Feature>Block terminal apps</Feature>
+        <Feature>Block system settings</Feature>
+        <Feature>Block the uninstaller</Feature>
+        <Feature>Block the system registry</Feature>
+        <Feature>Block the ability to modify the app settings</Feature>
+      </Column>
+      </DisplayScreenshotWithFeatures>
+
+      <Spacer class={"my-8"}/>
+
+      <DisplayScreenshotWithFeatures
+        alternateIndex={alternateIndex++}
+        image={<img src={"https://i.imgur.com/bmIUVGN.png"} alt="Create rituals"
+                    class={"rounded-lg drop-shadow-2xl"}/>}>
         <Column>
-          <Header class={"text-center my-4"} size={4}>
-            Customize the restrictiveness
-          </Header>
-          <Feature>Block the task manager</Feature>
-          <Feature>Block terminal apps</Feature>
-          <Feature>Block system settings</Feature>
-          <Feature>Block the uninstaller</Feature>
-          <Feature>Block the system registry</Feature>
-          <Feature>Block the ability to modify the app settings</Feature>
-        </Column>
-      </Row>
-
-      <Spacer class={"my-8"}/>
-
-      <Row class={"justify-around"}>
-        <Column class={"items-center"}>
           <Row class={"items-center"}>
             <Header class={"text-center my-4 me-6"} size={4}>
               Create sleep rituals
@@ -77,13 +87,13 @@ export default function Features() {
             <Badge class={"m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge> Play white noise
           </Feature>
         </Column>
-        <img src={"https://i.imgur.com/bmIUVGN.png"} alt="Restrictions" class={"w-1/2 rounded-lg drop-shadow-2xl"}/>
-      </Row>
+      </DisplayScreenshotWithFeatures>
 
       <Spacer class={"my-8"}/>
 
-      <Row class={"justify-around"}>
-        <img src={"https://i.imgur.com/jaaXftv.png"} alt="Cross-platform" class={"w-1/2 rounded-lg"}/>
+      <DisplayScreenshotWithFeatures
+        alternateIndex={alternateIndex++}
+        image={<img src={"https://i.imgur.com/jaaXftv.png"} alt="Cross-platform" class={"rounded-lg"}/>}>
         <Column>
           <Row class={"items-center"}>
             <Header class={"text-center my-4 me-6"} size={4}>
@@ -101,7 +111,7 @@ export default function Features() {
             Tested on Fedora Workstation 39
           </Feature>
         </Column>
-      </Row>
+      </DisplayScreenshotWithFeatures>
 
       <Divider class={"mx-8 mt-12"}/>
 

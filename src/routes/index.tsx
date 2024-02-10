@@ -142,13 +142,13 @@ export default function Home() {
         label={"Create sleep rituals"}
         src={"https://i.imgur.com/bmIUVGN.png"}
         description={"Change your wallpaper and system colors near sleep time, as a signal to wrap up your day"}
-        class={"size-[60%] my-12 center"}
+        class={"my-12 center"}
       />
       <Screenshot
         label={"It's inescapable!"}
         src={"https://i.imgur.com/RYzSur7.gif"}
         description={"A bit of firmness is necessary sometimes!"}
-        class={"size-[60%] my-12 center "}
+        class={"my-12 center "}
       />
       <Header size={3} class={"text-center lg:text-5xl"}>
         Sign up for pre-release now, and be an early adopter!

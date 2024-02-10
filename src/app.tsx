@@ -62,7 +62,7 @@ function ExpandNavBarButton(props: { onClick: () => void }) {
 
 function ExpandedNavBarMenu(props: { onDismiss: () => void }) {
   return <Column class={"lg:hidden fixed right-0 bottom-0 min-h-full z-[999] dark:bg-stone-800 p-8"}>
-    <Cross class={"m-4 fill-stone-800 dark:fill-stone-200 z-[999] cursor-pointer"} onClick={props.onDismiss}/>
+    <Cross class={"m-4 mt-0 fill-stone-800 dark:fill-stone-200 cursor-pointer"} onClick={props.onDismiss}/>
     <LinksAsList/>
   </Column>;
 }

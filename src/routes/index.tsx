@@ -9,6 +9,7 @@ import {SignUpButton} from "~/components/input/SignUpButton";
 import Flex from "~/components/layout/Flex";
 import {JSXElement} from "solid-js";
 import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
+import Spacer from "~/components/decoration/Spacer";
 
 function TiredGuy() {
   return <DisplayScreenshotWithFeatures
@@ -53,16 +54,16 @@ function Screenshot(
     alt?: string
   }
 ) {
-  return <Column class={"m-6 mt-4 lg:m-12 lg:mt-0 center"}>
+  return <Column class={"m-6 lg:m-12 mt-0 lg:mt-0 center"}>
     <Header size={3} class={"text-center text-3xl lg:text-6xl m-4 lg:m-8"}>
       {props.label}
     </Header>
     {props.description && <Pg class={"text-xl lg:text-3xl text-center"}>{props.description}</Pg>}
     <img src={props.src}
          alt={props.alt}
-         class={`lg:size-3/4 aspect-auto rounded-2xl ${props.class || ""} mt-4 mb-6`}
+         class={`lg:size-3/4 aspect-auto rounded-2xl ${props.class || ""} my-6`}
     />
-    <Divider class={"mx-12 w-full"}/>
+    <Divider class={"mt-4 mx-12 w-full"}/>
   </Column>
 }
 
@@ -145,6 +146,7 @@ export default function Home() {
       <Divider class={"mx-10 mt-12"}/>
       <WhatItDoes/>
       <Divider class={"mx-10 mt-12"}/>
+      <Spacer class={"mt-12"}/>
       <Screenshot
         label={"Set up a bedtime. And this time, stick to it."}
         src={"https://i.imgur.com/sJzh4oU.png"}

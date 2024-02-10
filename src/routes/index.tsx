@@ -107,10 +107,10 @@ export default function Home() {
     <main>
       <title>Sleep, or else - A better way to enforce sleep schedules</title>
       <Header class={"text-center text-5xl md:text-7xl lg:text-9xl mt-0"}>Sleep, or else...</Header>
-      <Pg class={"px-3 text-center text-2xl lg:text-3xl"}>
+      <Pg class={"px-4 mx-auto text-center text-2xl lg:text-3xl"}>
         The ultimate application for making sure you stick to your sleep schedule
       </Pg>
-      <Pg class={"px-3 text-center text-xl mt-12 text-yellow-800 dark:text-yellow-200"}>
+      <Pg class={"px-4 mx-auto text-center text-xl mt-12 text-yellow-800 dark:text-yellow-200"}>
         Sign up for pre-release for a <span class={"font-bold"}>15% off</span> the first year!
       </Pg>
       <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>

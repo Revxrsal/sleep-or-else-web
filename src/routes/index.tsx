@@ -19,7 +19,7 @@ function TiredGuy() {
       <Header size={3} class={"lg:text-5xl my-4"}>
         Say good bye to eye bags
       </Header>
-      <Pg class={"mx-6 text-2xl"}>
+      <Pg class={"mx-12 text-2xl"}>
         <span class={"italic"}>I'm going to stick this time</span>, or so we say.
       </Pg>
     </Column>
@@ -37,7 +37,7 @@ function Sleepy() {
       <Header size={3} class={"lg:text-5xl mb-4"}>
         Move beyond good intentions
       </Header>
-      <Pg class={"mx-6 text-2xl"}>
+      <Pg class={"mx-12 text-2xl"}>
         Leave no wiggle room. Add rituals and routines
       </Pg>
     </Column>
@@ -101,6 +101,27 @@ function WhatItDoes() {
   </>;
 }
 
+const HEALTH_ARTICLE = "https://www.webmd.com/sleep-disorders/benefits-sleep-more"
+const FITNESS_ARTICLE = "https://www.sleepfoundation.org/physical-activity/athletic-performance-and-sleep"
+
+function Article(props: {
+  url: string,
+  text: string,
+  superscript: number
+}) {
+  return <a class={"text-yellow-900 dark:text-yellow-200 underline"} href={props.url} target="_blank">
+    {props.text}<span class={"align-super text-[16px]"}>{props.superscript}</span>
+  </a>
+}
+
+function HealthArticle() {
+  return <Article text={"health"} url={HEALTH_ARTICLE} superscript={1}/>
+}
+
+function FitnessArticle() {
+  return <Article text={"fitness"} url={FITNESS_ARTICLE} superscript={2}/>
+}
+
 export default function Home() {
   const navigate = useNavigate()
   return (
@@ -108,7 +129,8 @@ export default function Home() {
       <title>Sleep, or else - A better way to enforce sleep schedules</title>
       <Header class={"text-center text-5xl md:text-6xl lg:text-8xl mt-0"}>Sleep, or else...</Header>
       <Pg class={"px-4 mx-auto text-center text-2xl lg:text-3xl"}>
-        The ultimate application for making sure you stick to your sleep schedule
+        Stick to your sleep schedule. Reap the <HealthArticle/> and <FitnessArticle/> benefits of getting
+        more sleep.
       </Pg>
       <Pg class={"px-4 mx-auto text-center text-xl mt-12 text-yellow-800 dark:text-yellow-200"}>
         Sign up for pre-release for a <span class={"font-bold"}>15% off</span> the first year!

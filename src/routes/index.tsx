@@ -60,7 +60,7 @@ function Screenshot(
     {props.description && <Pg class={"text-xl lg:text-3xl text-center"}>{props.description}</Pg>}
     <img src={props.src}
          alt={props.alt}
-         class={`lg:size-3/4 aspect-auto rounded-2xl ${props.class || ""}`}
+         class={`lg:size-3/4 aspect-auto rounded-2xl ${props.class || ""} mt-4`}
     />
     <Divider class={"mx-12 w-full"}/>
   </Column>

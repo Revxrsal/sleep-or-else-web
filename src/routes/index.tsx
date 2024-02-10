@@ -106,7 +106,7 @@ export default function Home() {
   return (
     <main>
       <title>Sleep, or else - A better way to enforce sleep schedules</title>
-      <Header class={"text-center text-5xl md:text-7xl lg:text-9xl mt-0"}>Sleep, or else...</Header>
+      <Header class={"text-center text-5xl md:text-6xl lg:text-8xl mt-0"}>Sleep, or else...</Header>
       <Pg class={"px-4 mx-auto text-center text-2xl lg:text-3xl"}>
         The ultimate application for making sure you stick to your sleep schedule
       </Pg>

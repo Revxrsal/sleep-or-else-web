@@ -16,10 +16,10 @@ function TiredGuy() {
     alternateIndex={1}
   >
     <Column>
-      <Header size={5}>
+      <Header size={3} class={"lg:text-5xl mb-4"}>
         Say good bye to eye bags
       </Header>
-      <Pg class={"ms-12 text-2xl"}>
+      <Pg class={"mx-6 text-2xl"}>
         <span class={"italic"}>I'm going to stick this time</span>, or so we say.
       </Pg>
     </Column>
@@ -34,10 +34,10 @@ function Sleepy() {
     alternateIndex={2}
   >
     <Column>
-      <Header size={5}>
+      <Header size={3} class={"lg:text-5xl mb-4"}>
         Move beyond good intentions
       </Header>
-      <Pg class={"ms-12 text-2xl"}>
+      <Pg class={"mx-6 text-2xl"}>
         Leave no wiggle room. Add rituals and routines
       </Pg>
     </Column>

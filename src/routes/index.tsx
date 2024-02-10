@@ -16,7 +16,7 @@ function TiredGuy() {
     alternateIndex={1}
   >
     <Column>
-      <Header size={3} class={"lg:text-5xl mb-4"}>
+      <Header size={3} class={"lg:text-5xl my-4"}>
         Say good bye to eye bags
       </Header>
       <Pg class={"mx-6 text-2xl"}>

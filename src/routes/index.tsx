@@ -150,7 +150,6 @@ export default function Home() {
         description={"A bit of firmness is necessary sometimes!"}
         class={"size-[60%] my-12 center "}
       />
-      <Divider class={"mx-8"}/>
       <Header size={3} class={"text-center lg:text-5xl"}>
         Sign up for pre-release now, and be an early adopter!
       </Header>

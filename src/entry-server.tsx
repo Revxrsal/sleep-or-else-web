@@ -9,7 +9,7 @@ export default createHandler(() => (
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
         <meta property="og:title" content="Sleep, or else..."/>
-        <meta property="og:description" content="The ultimate application for making sure you stick to your sleep schedule"/>
+        <meta property="og:description" content="An app for sticking to your sleep schedule. Reap the health and fitness benefits of getting more sleeping."/>
         <meta property="og:image" content="https://sleep-or-else.vercel.app/logo.png"/>
         <meta property="og:url" content="https://sleep-or-else.vercel.app/"/>
 

@@ -26,19 +26,21 @@ export function OutlinedButton(props: ButtonProps) {
 
 export default function Button(props: ButtonProps) {
   const [local, bProps] = splitProps(props, ["class", "onClick"]);
+  const bg = () => local.class?.includes("bg-") ? "" : "bg-yellow-800 dark:bg-yellow-300"
+  const text = () => local.class?.includes("text-") ? "" : "text-stone-100 dark:text-stone-800"
   return <button
     onClick={event => {
       rippleEffect(event)
       local.onClick?.(event)
     }}
     class={`
-        text-stone-100 
         mt-0 p-4 m-4 px-6 overflow-hidden
         w-fit
+        disabled:opacity-85
         rounded-full
-        bg-yellow-800
-        dark:bg-yellow-300 dark:text-stone-800 
-        hover:brightness-90 font-medium
+        ${bg()} ${text()}  
+        disabled:bg-stone-500 dark:disabled:bg-stone-500 
+        enabled:hover:brightness-90 font-medium
         ${local.class || ""}`} {...bProps}/>;
 }
 

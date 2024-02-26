@@ -7,7 +7,7 @@ dist
 netlify
 
 # Environment
-.env
+.env.development
 .env*.local
 
 # dependencies

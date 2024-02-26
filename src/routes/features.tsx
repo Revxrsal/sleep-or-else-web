@@ -8,6 +8,7 @@ import Spacer from "~/components/decoration/Spacer";
 import Badge from "~/components/decoration/Badge";
 import {SignUpButton} from "~/components/input/SignUpButton";
 import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
+import Check from "~/components/icons/Check";
 
 function Bullet() {
   return <span class={"font-bold"}>•</span>
@@ -23,6 +24,14 @@ function Feature(props: {
   )
 }
 
+function Platform(props: { children: JSXElement }) {
+  return (
+    <Row class={"mx-10 mt-5 align-middle center"}>
+      <Check class={"mx-2 fill-green-600 dark:fill-green-500"}/>
+      <Pg class={"text-lg"}>{props.children}</Pg>
+    </Row>
+  )
+}
 
 export default function Features() {
   let alternateIndex = 0
@@ -99,17 +108,18 @@ export default function Features() {
             <Header class={"text-center my-4 me-6"} size={4}>
               Cross-platform
             </Header>
-            <Badge>NEW!</Badge>
           </Row>
-          <Feature>Tested on Windows 11</Feature>
-          <Feature>
-            <Badge class={"m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge>
-            Tested on macOS 13
-          </Feature>
-          <Feature>
+
+          <Platform>
+            Tested on Windows 11
+          </Platform>
+          <Platform>
+            Tested on macOS Ventura
+          </Platform>
+          <Platform>
             <Badge class={"m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge>
             Tested on Fedora Workstation 39
-          </Feature>
+          </Platform>
         </Column>
       </DisplayScreenshotWithFeatures>
 

@@ -129,6 +129,7 @@ export default function Home() {
     <main>
       <title>Sleep, or else - A better way to enforce sleep schedules</title>
       <Header class={"text-center text-5xl md:text-6xl lg:text-8xl mt-0"}>Sleep, or else...</Header>
+      {/*<SubscribeButton planId="P-6S924879LV528163NMXIP2UI"/>*/}
       <Pg class={"px-4 mx-auto text-center text-2xl lg:text-3xl"}>
         Stick to your sleep schedule. Reap the <HealthArticle/> and <FitnessArticle/> benefits of getting
         more sleep.

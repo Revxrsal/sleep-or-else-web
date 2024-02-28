@@ -8,7 +8,7 @@ netlify
 
 # Environment
 .env.development
-.env*.local
+.env.development.local
 
 # dependencies
 /node_modules

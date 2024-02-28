@@ -1,56 +1,58 @@
 import {APIEvent} from "@solidjs/start/server/types";
 import {paths} from "@paypal/paypal-js/types/apis/openapi/billing_subscriptions_v1";
 import {createSupabaseClient} from "~/database/client";
+ import {authorization, BASE_URL} from "~/routes/api/util";
 
-const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID
-const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET
+const SERVICE_ROLE = import.meta.env.VITE_SUPABASE_SERVICE_ROLE
 
 export interface SubscriptionCreatedBody {
   subscriptionId: string,
   userId: string
 }
 
-const SANDBOX = true
-
-function encodeAuth(clientId: string, clientSecret: string) {
-  const v = `${clientId}:${clientSecret}`
-  return btoa(v)
-}
-
 type BillingSubscriptionResponse = paths["/v1/billing/subscriptions/{id}"]["get"]["responses"]["200"]["content"]["application/json"]
+
+async function saveSubscription(body: SubscriptionCreatedBody, result: BillingSubscriptionResponse) {
+  const supabase = createSupabaseClient(SERVICE_ROLE)
+  const response = await supabase.from("subscriptions").insert(
+    {
+      id: body.userId,
+      subscription_key: result.id!
+    }
+  )
+  if (response.error) {
+    console.error("Error occurred", response.error)
+    return Response.json({
+      success: false
+    }, {
+      status: response.status,
+      statusText: response.statusText
+    })
+  }
+  return Response.json({
+    success: true
+  }, {
+    status: 200
+  })
+}
 
 export async function POST(event: APIEvent) {
   const body: SubscriptionCreatedBody = await event.request.json()
-
-  const url = SANDBOX ? `https://api-m.sandbox.paypal.com/v1/billing/subscriptions/${body.subscriptionId}`
-    : `https://api-m.paypal.com/v1/billing/subscriptions/${body.subscriptionId}`
-
-  const response = await fetch(url, {
+  const response = await fetch(`${BASE_URL}/v1/billing/subscriptions/${body.subscriptionId}`, {
     headers: {
-      "Authorization": `Basic ${encodeAuth(PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET)}`,
+      "Authorization": authorization(),
       "Content-Type": "application/json"
     }
   })
   if (response.ok) {
     const result: BillingSubscriptionResponse = await response.json()
-    const supabase = createSupabaseClient()
-    await supabase.from("subscriptions").insert(
-      {
-        id: body.userId,
-        subscription_key: result.id!
-      }
-    )
-    return Response.json({
-      success: true
-    }, {
-      status: 200
-    })
+    return saveSubscription(body, result);
   } else {
     const error = await response.json()
     return Response.json({
       status: response.status,
       error: error.message!
-    },{
+    }, {
       status: response.status,
       statusText: response.statusText
     })

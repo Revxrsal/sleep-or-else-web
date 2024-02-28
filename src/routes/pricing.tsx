@@ -18,6 +18,8 @@ import {forCheckout, forSubscriptions, PayPalResource} from "~/paypal/paypal";
 import SwitchButton from "~/components/input/SwitchButton";
 import {PayPalNamespace} from "@paypal/paypal-js";
 import {CreateOrderRequestBody} from "~/routes/api/create-order";
+import {SubscriptionCreatedBody} from "~/routes/api/subscription-created";
+import {LicenseType} from "~/routes/api/types";
 
 function PackFeature(props: {
   children: JSXElement
@@ -53,8 +55,6 @@ function BuyNowButton(props: {
       label: "checkout"
     }}
     createOrder={async (data, actions) => {
-      // console.log(actions)
-      // return await actions.order.create(createOrderBody)
       const request: CreateOrderRequestBody = {
         purchase: "Lifetime"
       }
@@ -86,7 +86,7 @@ function BuyNowButton(props: {
     }}/>
 }
 
-function SubscribeButton(props: { planId: string, payPal: PayPalResource }) {
+function SubscribeButton(props: { planId: string, subscriptionType: LicenseType, payPal: PayPalResource }) {
   const session = createSupabaseSessionResource()
   const navigate = useNavigate()
   return <PayPalButtons
@@ -110,8 +110,9 @@ function SubscribeButton(props: { planId: string, payPal: PayPalResource }) {
           method: "POST",
           body: JSON.stringify({
             subscriptionId: data.subscriptionID!,
-            userId: session()?.user!.id!
-          })
+            userId: session()?.user!.id!,
+            subscriptionType: props.subscriptionType
+          } as SubscriptionCreatedBody)
         });
         // console.log(await response.json())
         navigate("/purchase-success")
@@ -137,7 +138,10 @@ function MonthlyPlan(props: {
       <PackFeature>Install on unlimited computers</PackFeature>
       <PackFeature>Access to periodic updates</PackFeature>
       <PackFeature>Priority support</PackFeature>
-      <SubscribeButton payPal={props.payPal} planId="P-6S924879LV528163NMXIP2UI"/>
+      <SubscribeButton
+        subscriptionType="SUBSCRIPTION_MONTHLY"
+        payPal={props.payPal} planId="P-6S924879LV528163NMXIP2UI"
+      />
     </Column>
   )
 }
@@ -164,7 +168,11 @@ function YearlyPlan(props: {
       <PackFeature>Install on unlimited computers</PackFeature>
       <PackFeature>Access to periodic updates</PackFeature>
       <PackFeature>Priority support</PackFeature>
-      <SubscribeButton payPal={props.payPal} planId="P-6S924879LV528163NMXIP2UI"/>
+      <SubscribeButton
+        subscriptionType="SUBSCRIPTION_YEARLY"
+        payPal={props.payPal}
+        planId="P-6S924879LV528163NMXIP2UI"
+      />
     </Column>
   )
 }

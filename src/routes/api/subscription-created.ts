@@ -1,22 +1,25 @@
 import {APIEvent} from "@solidjs/start/server/types";
 import {paths} from "@paypal/paypal-js/types/apis/openapi/billing_subscriptions_v1";
 import {createSupabaseClient} from "~/database/client";
- import {authorization, BASE_URL} from "~/routes/api/util";
+import {authorization, BASE_URL} from "~/routes/api/util";
 import {env} from "~/routes/api/environment";
+import {LicenseType} from "~/routes/api/types";
 
 export interface SubscriptionCreatedBody {
   subscriptionId: string,
-  userId: string
+  userId: string,
+  subscriptionType: LicenseType
 }
 
 type BillingSubscriptionResponse = paths["/v1/billing/subscriptions/{id}"]["get"]["responses"]["200"]["content"]["application/json"]
 
 async function saveSubscription(body: SubscriptionCreatedBody, result: BillingSubscriptionResponse) {
   const supabase = createSupabaseClient(env.SUPABASE_SERVICE_ROLE)
-  const response = await supabase.from("subscriptions").insert(
+  const response = await supabase.from("licenses").insert(
     {
       id: body.userId,
-      subscription_key: result.id!
+      paypal_id: result.id!,
+      license_type: body.subscriptionType
     }
   )
   if (response.error) {

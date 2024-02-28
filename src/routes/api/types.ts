@@ -1,4 +1,5 @@
 import {paths} from "@paypal/paypal-js/types/apis/openapi/checkout_orders_v2";
+import {Database} from "~/database/database-types";
 
 export type OrderCreateRequest = paths["/v2/checkout/orders"]["post"]["requestBody"]["content"]["application/json"]
 export type OrderCreateResponse = paths["/v2/checkout/orders"]["post"]["responses"]["200"]["content"]["application/json"]
@@ -21,3 +22,5 @@ export const LifetimePurchase: Purchase = {
 export const Purchases: Record<PurchaseType, Purchase> = {
   "Lifetime": LifetimePurchase
 }
+
+export type LicenseType = Database["public"]["Enums"]["License"]

@@ -5,27 +5,64 @@ import {FaBrandsApple, FaBrandsMicrosoft} from "solid-icons/fa";
 import Pg from "~/components/typography/Pg";
 import {VsTerminalLinux} from "solid-icons/vs";
 import Flex from "~/components/layout/Flex";
-import {Component} from "solid-js";
+import {createMemo, JSXElement, Match, Switch} from "solid-js";
+import Divider from "~/components/decoration/Divider";
 
 function Platform(props: {
-  icon: Component,
+  icon: JSXElement,
   label: string,
   class?: string
 }) {
   return (
     <Column center class={`hover:scale-105 cursor-pointer transition-all m-8 ${props.class || ""}`}>
-      {props.icon({
-        size: 72,
-        class: "m-8 fill-stone-800 dark:fill-yellow-200"
-      })}
+      {props.icon}
       <Pg class={"text-xl lg:text-2xl font-semibold"}>{props.label}</Pg>
     </Column>
   )
 }
 
-export default function Download() {
+function Windows() {
   return (
-    <main class={"pb-0"}>
+    <Platform
+      icon={<FaBrandsMicrosoft size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
+      label="Download for Windows"
+    />
+  )
+}
+
+function MacOS() {
+  return (
+    <Platform
+      icon={<FaBrandsApple size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
+      label="Download for macOS"
+    />
+  )
+}
+
+function Linux() {
+  return (
+    <Platform
+      icon={<VsTerminalLinux size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
+      label="Download for Linux"
+    />
+  )
+}
+
+export default function Download() {
+  const operatingSystem = createMemo(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf("win") !== -1) {
+      return "Windows";
+    } else if (userAgent.indexOf("mac") !== -1) {
+      return "macOS";
+    } else if (userAgent.indexOf("linux") !== -1) {
+      return "Linux";
+    } else {
+      return "Unknown"
+    }
+  })
+  return (
+    <main>
       <Column class={"center"}>
         <PageTitle>Download</PageTitle>
         <Header class={"text-center"}>
@@ -33,20 +70,37 @@ export default function Download() {
         </Header>
         <Flex class={"flex-col lg:flex-row justify-around lg:w-full"}>
 
-          <Platform
-            icon={FaBrandsMicrosoft}
-            label="Download for Windows"
-          />
+          <Column class={"center w-full"}>
+            <Switch>
+              <Match when={operatingSystem() == "Windows"}>
+                <Windows/>
+                <Divider class={"px-8 mx-8 my-12 w-full"}/>
+                <Flex class={"flex-col lg:flex-row lg:w-2/3 justify-around"}>
+                  <MacOS/>
+                  <Linux/>
+                </Flex>
+              </Match>
 
-          <Platform
-            icon={FaBrandsApple}
-            label="Download for macOS"
-          />
+              <Match when={operatingSystem() == "macOS"}>
+                <MacOS/>
+                <Divider class={"mx-8 my-12 w-full"}/>
+                <Flex class={"flex-col lg:flex-row lg:w-2/3 justify-around"}>
+                  <Windows/>
+                  <Linux/>
+                </Flex>
+              </Match>
 
-          <Platform
-            icon={VsTerminalLinux}
-            label="Download for Linux"
-          />
+              <Match when={operatingSystem() == "Linux"}>
+                <Linux/>
+                <Divider class={"mx-8 my-12 w-full"}/>
+                <Flex class={"flex-col lg:flex-row lg:w-2/3 justify-around"}>
+                  <Windows/>
+                  <MacOS/>
+                </Flex>
+              </Match>
+            </Switch>
+          </Column>
+
         </Flex>
       </Column>
     </main>

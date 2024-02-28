@@ -20,6 +20,7 @@ import {PayPalNamespace} from "@paypal/paypal-js";
 import {CreateOrderRequestBody} from "~/routes/api/create-order";
 import {SubscriptionCreatedBody} from "~/routes/api/subscription-created";
 import {LicenseType} from "~/routes/api/types";
+import PageTitle from "~/components/meta/PageTitle";
 
 function PackFeature(props: {
   children: JSXElement
@@ -211,7 +212,7 @@ export default function Pricing() {
   let lastSwitched: string | number | NodeJS.Timeout | undefined;
   createEffect(async () => {
     clearTimeout(lastSwitched)
-    const isLifetime = lifetime() // so solidjs can track it here
+    const isLifetime = lifetime() // so solid can track it here
     const payPalValue = payPal()
     await payPalValue?.Buttons?.().close()
     if (isLifetime)
@@ -221,10 +222,8 @@ export default function Pricing() {
   })
   return (
     <main class={"pt-4 mt-4"}>
-      <title>Pricing - Sleep or else</title>
-      <Header class={"text-center my-0"}>
-        Pricing
-      </Header>
+      <PageTitle>Pricing</PageTitle>
+      <Header class={"text-center my-0"}>Pricing</Header>
       <Divider class={"mx-8 my-8 mb-0 lg:my-12"}/>
       <Row class={"justify-center"}>
         <Pg class={"font-semibold"}>Subscription</Pg>

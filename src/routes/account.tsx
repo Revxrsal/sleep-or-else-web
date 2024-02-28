@@ -5,6 +5,7 @@ import {createSupabaseSessionResource} from "~/database/primitives";
 import {onMount, Show} from "solid-js";
 import Column from "~/components/layout/Column";
 import {useNavigate} from "@solidjs/router";
+import PageTitle from "~/components/meta/PageTitle";
 
 export default function Account() {
   const auth = useSupabaseAuth()
@@ -17,7 +18,7 @@ export default function Account() {
   return (
     <main>
       <Column class={"center"}>
-        <title>Account - Sleep or else</title>
+        <PageTitle>Account</PageTitle>
         <Header>Account</Header>
         <Show when={session() != null}>
           <Button onClick={() => auth.signOut()}>

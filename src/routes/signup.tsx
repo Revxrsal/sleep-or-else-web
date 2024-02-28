@@ -7,6 +7,7 @@ import Pg from "~/components/typography/Pg";
 import {useNavigate} from "@solidjs/router";
 import FormField from "~/components/icons/FormField";
 import {SignInWithGitHub, SignInWithGoogle} from "~/components/providers/ProviderButton";
+import PageTitle from "~/components/meta/PageTitle";
 
 export default function SignUp() {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ export default function SignUp() {
   const auth = useSupabaseAuth()
   return (
     <main class={"mt-0"}>
-      <title>Sign up - Sleep or else</title>
+      <PageTitle>Sign up</PageTitle>
       <Column center>
         <Header size={3} class={"text-3xl md:text-4xl lg:text-5xl"}>
           Welcome abroad!

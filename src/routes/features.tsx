@@ -9,6 +9,7 @@ import Badge from "~/components/decoration/Badge";
 import {SignUpButton} from "~/components/input/SignUpButton";
 import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
 import Check from "~/components/icons/Check";
+import PageTitle from "~/components/meta/PageTitle";
 
 function Bullet() {
   return <span class={"font-bold"}>•</span>
@@ -37,7 +38,7 @@ export default function Features() {
   let alternateIndex = 0
   return (
     <main class={"pt-4 mt-4 px-4"}>
-      <title>Feature list - Sleep or else</title>
+      <PageTitle>Feature list</PageTitle>
       <Header class={"text-center my-0"}>
         Features
       </Header>

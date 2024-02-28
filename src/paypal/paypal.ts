@@ -1,11 +1,11 @@
-import {Accessor, createContext, useContext} from "solid-js";
 import {loadScript, PayPalNamespace} from "@paypal/paypal-js";
+import {Accessor} from "solid-js";
 
 export const PAYPAL_CLIENT_ID: string = import.meta.env.VITE_PAYPAL_CLIENT_ID
 
-export const PayPalContext = createContext()
+export type PayPalResource = Accessor<PayPalNamespace | undefined | null>
 
-export function createPayPal() {
+export function forSubscriptions() {
   return loadScript({
     clientId: PAYPAL_CLIENT_ID,
     vault: true,
@@ -13,6 +13,9 @@ export function createPayPal() {
   })
 }
 
-export function usePayPal(): Accessor<PayPalNamespace> {
-  return useContext(PayPalContext) as Accessor<PayPalNamespace>
+export function forCheckout() {
+  return loadScript({
+    clientId: PAYPAL_CLIENT_ID,
+    vault: true,
+  })
 }

@@ -22,8 +22,6 @@ import Spacer from "~/components/decoration/Spacer";
 import {inject} from '@vercel/analytics';
 import Column from "~/components/layout/Column";
 import Cross from "~/components/icons/Cross";
-import {createPayPal, PayPalContext} from "~/paypal/paypal";
-import {PayPalNamespace} from "@paypal/paypal-js";
 import {SupabaseProvider} from "solid-supabase";
 import {createSupabaseClient} from "~/database/client";
 import {NavBar} from "~/components/nav/NavBar";
@@ -187,12 +185,6 @@ function AppNavBar(props: {
 
 export default function App() {
   onMount(inject);
-  const [paypal, setPayPal] = createSignal<PayPalNamespace>()
-  onMount(async () => {
-    const p = (await createPayPal())!
-    setPayPal(p)
-  })
-
   const [darkMode, setDarkMode] = createDarkModeSignal()
   const [expandNavBar, setExpandNavBar] = createSignal(false)
 
@@ -202,13 +194,11 @@ export default function App() {
         <MetaProvider>
           <DarkModeContext.Provider value={[darkMode, setDarkMode]}>
             <SupabaseProvider client={supabaseClient}>
-              <PayPalContext.Provider value={paypal}>
-                <AppNavBar expanded={expandNavBar} setExpanded={setExpandNavBar}/>
-                <div onClick={() => setExpandNavBar(false)}>
-                  <Suspense>{props.children}</Suspense>
-                </div>
-                <Footer/>
-              </PayPalContext.Provider>
+              <AppNavBar expanded={expandNavBar} setExpanded={setExpandNavBar}/>
+              <div onClick={() => setExpandNavBar(false)}>
+                <Suspense>{props.children}</Suspense>
+              </div>
+              <Footer/>
             </SupabaseProvider>
           </DarkModeContext.Provider>
         </MetaProvider>

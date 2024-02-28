@@ -9,18 +9,21 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      subscriptions: {
+      licenses: {
         Row: {
           id: string
-          subscription_key: string
+          license_type: Database["public"]["Enums"]["License"]
+          paypal_id: string
         }
         Insert: {
           id: string
-          subscription_key: string
+          license_type: Database["public"]["Enums"]["License"]
+          paypal_id: string
         }
         Update: {
           id?: string
-          subscription_key?: string
+          license_type?: Database["public"]["Enums"]["License"]
+          paypal_id?: string
         }
         Relationships: []
       }
@@ -32,7 +35,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      License: "SUBSCRIPTION_MONTHLY" | "SUBSCRIPTION_YEARLY" | "LIFETIME"
     }
     CompositeTypes: {
       [_ in never]: never

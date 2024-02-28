@@ -32,6 +32,7 @@ import {FaSolidMoon} from "solid-icons/fa";
 import {BsSunFill} from "solid-icons/bs";
 import Footer from "./components/nav/Footer";
 import {Session} from "@supabase/supabase-js";
+import {injectSpeedInsights} from "@vercel/speed-insights";
 
 function NoImage(props: {
   value: string,
@@ -184,7 +185,10 @@ function AppNavBar(props: {
 }
 
 export default function App() {
-  onMount(inject);
+  onMount(async () => {
+    inject()
+    injectSpeedInsights()
+  });
   const [darkMode, setDarkMode] = createDarkModeSignal()
   const [expandNavBar, setExpandNavBar] = createSignal(false)
 

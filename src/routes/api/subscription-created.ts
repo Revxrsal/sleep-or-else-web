@@ -2,8 +2,7 @@ import {APIEvent} from "@solidjs/start/server/types";
 import {paths} from "@paypal/paypal-js/types/apis/openapi/billing_subscriptions_v1";
 import {createSupabaseClient} from "~/database/client";
  import {authorization, BASE_URL} from "~/routes/api/util";
-
-const SERVICE_ROLE = import.meta.env.VITE_SUPABASE_SERVICE_ROLE
+import {env} from "~/routes/api/environment";
 
 export interface SubscriptionCreatedBody {
   subscriptionId: string,
@@ -13,7 +12,7 @@ export interface SubscriptionCreatedBody {
 type BillingSubscriptionResponse = paths["/v1/billing/subscriptions/{id}"]["get"]["responses"]["200"]["content"]["application/json"]
 
 async function saveSubscription(body: SubscriptionCreatedBody, result: BillingSubscriptionResponse) {
-  const supabase = createSupabaseClient(SERVICE_ROLE)
+  const supabase = createSupabaseClient(env.SUPABASE_SERVICE_ROLE)
   const response = await supabase.from("subscriptions").insert(
     {
       id: body.userId,

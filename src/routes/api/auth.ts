@@ -1,7 +1,8 @@
 // https://developer.paypal.com/api/rest/authentication/
-import {BASE_URL, PAYPAL_CLIENT_SECRET} from "~/routes/api/util";
+import {BASE_URL} from "~/routes/api/util";
 import {PAYPAL_CLIENT_ID} from "~/paypal/paypal";
 import TTLCache from "@isaacs/ttlcache";
+import {env} from "~/routes/api/environment";
 
 const options = {
   max: 100,
@@ -32,7 +33,7 @@ interface HttpErrorResponse extends Error {
 
 export default async function getAuthToken(
   client = PAYPAL_CLIENT_ID,
-  secret = PAYPAL_CLIENT_SECRET
+  secret = env.PAYPAL_CLIENT_SECRET
 ): Promise<AuthTokenResponse> {
   if (!client || !secret) {
     throw new Error("MISSING_API_CREDENTIALS");

@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="generate supabase types" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="generateSupabaseTypes" />
+    </scripts>
+    <node-interpreter value="project" />
+    <package-manager value="C:\Users\Ali\AppData\Roaming\npm\pnpm.cmd" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

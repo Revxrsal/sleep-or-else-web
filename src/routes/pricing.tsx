@@ -42,6 +42,7 @@ function BuyNowButton(props: {
   class?: string
 } & ButtonProps) {
   const navigate = useNavigate()
+  const session = createSupabaseSessionResource()
   return <PayPalButtons
     payPal={props.payPal}
     class={`mx-auto w-32 lg:w-48 mt-8 ${props.class || ""}`}
@@ -76,7 +77,10 @@ function BuyNowButton(props: {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({orderId: data.orderID})
+        body: JSON.stringify({
+          orderId: data.orderID,
+          userId: session()?.user!.id!
+        })
       })
       navigate("/purchase-success")
     }}/>

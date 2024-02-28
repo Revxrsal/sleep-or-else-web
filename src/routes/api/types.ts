@@ -2,6 +2,7 @@ import {paths} from "@paypal/paypal-js/types/apis/openapi/checkout_orders_v2";
 
 export type OrderCreateRequest = paths["/v2/checkout/orders"]["post"]["requestBody"]["content"]["application/json"]
 export type OrderCreateResponse = paths["/v2/checkout/orders"]["post"]["responses"]["200"]["content"]["application/json"]
+export type OrderCaptureResponse = paths["/v2/checkout/orders/{id}/capture"]["post"]["responses"]["200"]["content"]["application/json"]
 
 export type PurchaseType = "Lifetime"
 

@@ -29,7 +29,7 @@ export function SignInWithGoogle() {
   async function login() {
     await auth.signInWithOAuth({
       options: {
-        redirectTo: "/pricing"
+        redirectTo: `${import.meta.env.BASE_URL}/pricing`
       },
       provider: "google",
     })

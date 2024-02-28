@@ -18,19 +18,19 @@ export default function SwitchButton(props: SwitchButtonProps) {
             />
             <div
                 class="w-12 h-7 bg-gray-300 transition-all
-                 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-yellow-400
+                 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-yellow-950
                  dark:peer-focus:ring-yellow-950
                  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full
                  peer-checked:after:border-white after:content-['']
                  after:absolute after:top-[4px]
                  after:left-[4px]
-                 after:bg-gray-200
-                 after:border-stone-400
+                 after:bg-gray-200 dark:after:bg-white
+                 after:border-stone-100
                  after:border after:rounded-full
                  after:h-5 after:w-5 after:transition-all
                  dark:border-gray-600
-                 peer-checked:bg-yellow-700"
-            ></div>
+                 peer-checked:bg-yellow-700 peer-checked:dark:bg-yellow-300"
+            />
             <span class="ml-4 text-[15px] font-medium text">{props.label}</span>
         </label>
     );

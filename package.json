@@ -5,7 +5,8 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "generateSupabaseTypes": "supabase gen types typescript --project-id xjaqtpgdbcsyxptpcqhy > src/database/database-types.ts"
+    "generateSupabaseTypes": "supabase gen types typescript --project-id xjaqtpgdbcsyxptpcqhy > src/database/database-types.ts",
+    "generateApiKey": "node -e \"console.log(crypto.randomBytes(32).toString('hex'))\""
   },
   "dependencies": {
     "@isaacs/ttlcache": "^1.4.1",

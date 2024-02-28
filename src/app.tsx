@@ -84,13 +84,13 @@ function LinksAsList() {
         <Pg class={"p-4 font-semibold"}>Pricing</Pg>
       </a>
 
+      <a href="/download">
+        <Pg class={"p-4 font-semibold"}>Download</Pg>
+      </a>
+
       <Show when={session() != null} fallback={
         <SignUpButton class={"mx-0 my-0 font-semibold scale-[75%]"}/>
       }>
-        <a href="/subscriptions">
-          <Pg class={"p-4 font-semibold"}>Subscriptions</Pg>
-        </a>
-
         <UserImage
           class={`mx-4 w-12 h-12
            rounded-md 
@@ -121,7 +121,6 @@ function ExpandNavBarButton(props: { onClick: () => void }) {
   return <div class="lg:hidden px-4" onClick={props.onClick}>
     <button class="navbar-burger flex items-center text-on-bg p-3">
       <svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <title>Mobile menu</title>
         <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
       </svg>
     </button>
@@ -142,11 +141,12 @@ function DarkModeToggle() {
   createEffect(() => {
     const root = document.getElementsByTagName("html")[0];
     const body = document.getElementsByTagName("body")[0]
-    body.classList.add("transition-all")
     if (darkMode())
       root.classList.add("dark")
     else
       root.classList.remove("dark")
+    if (!body.classList.contains("transition-all"))
+      body.classList.add("transition-all")
   })
   return (
     <IconButton class={"me-4"} onClick={() => setDarkMode(v => !v)}>

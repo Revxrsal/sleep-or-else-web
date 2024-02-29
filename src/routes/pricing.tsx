@@ -56,7 +56,7 @@ function BuyNowButton(props: {
       layout: "vertical",
       label: "checkout"
     }}
-    createOrder={async (data, actions) => {
+    createOrder={async () => {
       const request: CreateOrderRequestBody = {
         purchase: "Lifetime"
       }
@@ -111,7 +111,6 @@ function SubscribeButton(props: {
     }}
     onApprove={
       async (data, _actions) => {
-        /*const response = */
         await fetch("/api/subscription-created", {
           method: "POST",
           body: JSON.stringify({
@@ -120,7 +119,6 @@ function SubscribeButton(props: {
             subscriptionType: props.subscriptionType
           } as SubscriptionCreatedBody)
         });
-        // console.log(await response.json())
         navigate("/purchase-success")
       }
     }
@@ -238,7 +236,6 @@ function SignUpToBuyButton(props: { children: JSXElement }) {
 }
 
 export default function Pricing() {
-  const navigate = useNavigate()
   const [lifetime, setLifetime] = createSignal(false)
   const [payPal, setPayPal] = createSignal<PayPalNamespace | null>(null)
   const session = createSupabaseSessionResource()

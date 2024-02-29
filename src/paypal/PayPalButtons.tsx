@@ -1,6 +1,7 @@
 import {createEffect, Suspense} from "solid-js";
 import {PayPalButtonsComponentOptions} from "@paypal/paypal-js";
 import {PayPalResource} from "~/paypal/paypal";
+import Row from "~/components/layout/Row";
 
 export interface PayPalButtonProps extends PayPalButtonsComponentOptions {
   class?: string,
@@ -22,6 +23,8 @@ export default function PayPalButtons(props: PayPalButtonProps) {
   })
 
   return <Suspense>
-    <div class={props.class} ref={el => buttons = el}/>
+    <Row class={"center my-auto align-middle justify-center"}>
+      <div class={props.class} ref={el => buttons = el}/>
+    </Row>
   </Suspense>
 }

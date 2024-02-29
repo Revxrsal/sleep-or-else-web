@@ -140,6 +140,8 @@ function MonthlyPlan(props: {
         <span class={"text-sm"}>USD/month</span>
       </Header>
       <Spacer class={"my-2"}/>
+      <PackFeature>14-days free trial</PackFeature>
+      <PackFeature>30-day money-back guarantee</PackFeature>
       <PackFeature>Full access to the application</PackFeature>
       <PackFeature>Full access to the browser extension</PackFeature>
       <PackFeature>Install on unlimited computers</PackFeature>
@@ -175,6 +177,8 @@ function YearlyPlan(props: {
       </Header>
       <Pg class={"text-stone-800 dark:text-stone-800 text-xs p-1"}>Billed annually as $19.99/year</Pg>
       <Spacer class={"my-2"}/>
+      <PackFeature>14-days free trial</PackFeature>
+      <PackFeature>30-day money-back guarantee</PackFeature>
       <PackFeature>Full access to the application</PackFeature>
       <PackFeature>Full access to the browser extension</PackFeature>
       <PackFeature>Install on unlimited computers</PackFeature>
@@ -206,11 +210,12 @@ function LifetimePlan(props: {
         <span class={"text-sm"}>USD</span>
       </Header>
       <Spacer class={"my-2"}/>
+      <PackFeature>30-day money-back guarantee</PackFeature>
       <PackFeature>Full access to the application</PackFeature>
       <PackFeature>Full access to the browser extension</PackFeature>
       <PackFeature>Install on unlimited computers</PackFeature>
       <PackFeature>Access to periodic updates</PackFeature>
-      <NoPackFeature>Priority support</NoPackFeature>
+      {/*<NoPackFeature>Priority support</NoPackFeature>*/}
       <Show when={props.session() == null} fallback={
         <BuyNowButton session={props.session} payPal={props.payPal}/>
       }>
@@ -233,6 +238,7 @@ function SignUpToBuyButton(props: { children: JSXElement }) {
 }
 
 export default function Pricing() {
+  const navigate = useNavigate()
   const [lifetime, setLifetime] = createSignal(false)
   const [payPal, setPayPal] = createSignal<PayPalNamespace | null>(null)
   const session = createSupabaseSessionResource()
@@ -278,12 +284,19 @@ export default function Pricing() {
 
       <Header class={"text-center"}>Not sure yet?</Header>
       <Pg class={"text-center text-xl text-yellow-800 dark:text-yellow-200 mx-8"}>
-        Get a free trial of <span class={"font-bold"}>14 days</span>, and a 30-day money back
-        guarantee after purchase. No questions asked.
+        Subscription plans come with a <span class={"font-bold"}>14 days</span> free trial, and you get a 30-day
+        money back guarantee after any purchase. No questions asked.
       </Pg>
-      <Row class={"items-center justify-center center m-8 mx-8 mb-0"}>
-        <SignUpButton/>
-      </Row>
+
+      <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
+        <Show when={session() == null}>
+          <SignUpButton/>
+        </Show>
+        <Button onClick={() => {
+          setLifetime(false)
+          window.scroll({top: 0, left: 0})
+        }}>See our plans</Button>
+      </Flex>
     </main>
   )
 }

@@ -40,7 +40,7 @@ export default function Button(props: ButtonProps) {
         rounded-full
         ${bg()} ${text()}  
         disabled:bg-stone-500 dark:disabled:bg-stone-500 
-        enabled:hover:brightness-90 font-medium
+        enabled:hover:brightness-95 font-medium
         ${local.class || ""}`} {...bProps}/>;
 }
 

@@ -1,6 +1,6 @@
 import Header from "~/components/typography/Header";
 import Pg from "~/components/typography/Pg";
-import {JSXElement} from "solid-js";
+import {JSXElement, Show} from "solid-js";
 import Row from "~/components/layout/Row";
 import Column from "~/components/layout/Column";
 import Divider from "~/components/decoration/Divider";
@@ -10,6 +10,10 @@ import {SignUpButton} from "~/components/input/SignUpButton";
 import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
 import Check from "~/components/icons/Check";
 import PageTitle from "~/components/meta/PageTitle";
+import Flex from "~/components/layout/Flex";
+import Button from "~/components/input/Button";
+import {createSupabaseSessionResource} from "~/database/primitives";
+import {useNavigate} from "@solidjs/router";
 
 function Bullet() {
   return <span class={"font-bold"}>•</span>
@@ -35,6 +39,8 @@ function Platform(props: { children: JSXElement }) {
 }
 
 export default function Features() {
+  const session = createSupabaseSessionResource()
+  const navigate = useNavigate()
   let alternateIndex = 0
   return (
     <main class={"pt-4 mt-4 px-4"}>
@@ -128,11 +134,16 @@ export default function Features() {
 
       <Header class={"text-center"}>Not convinced yet?</Header>
       <Pg class={"text-center text-xl text-yellow-800 dark:text-yellow-200 mx-8"}>
-        Those who sign up for pre-release get <span class={"font-bold"}>15% off</span> the first year!
+        Get <span class={"font-bold"}>14 days</span> of free trial in any of our subscription plans
       </Pg>
-      <Row class={"items-center justify-center center m-8 mx-8 mb-0"}>
-        <SignUpButton/>
-      </Row>
+      <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
+        <Show when={session() == null}>
+          <SignUpButton/>
+        </Show>
+        <Button onClick={() => {
+          navigate("/pricing")
+        }}>See our plans</Button>
+      </Flex>
     </main>
   )
 }

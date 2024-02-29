@@ -50,7 +50,7 @@ function Linux() {
 
 export default function Download() {
   const [operatingSystem, setOperatingSystem] = createSignal("Windows");
-  onMount(() => {
+  onMount(async () => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf("win") !== -1) {
       setOperatingSystem("Windows");

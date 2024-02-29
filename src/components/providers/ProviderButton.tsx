@@ -50,7 +50,10 @@ export function SignInWithGitHub() {
 
   async function login() {
     await auth.signInWithOAuth({
-      provider: "github"
+      provider: "github",
+      options: {
+        redirectTo: `${import.meta.env.BASE_URL}/pricing`
+      }
     })
   }
 

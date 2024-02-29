@@ -5,7 +5,7 @@ import {FaBrandsApple, FaBrandsMicrosoft} from "solid-icons/fa";
 import Pg from "~/components/typography/Pg";
 import {VsTerminalLinux} from "solid-icons/vs";
 import Flex from "~/components/layout/Flex";
-import {createMemo, JSXElement, Match, Switch} from "solid-js";
+import {createSignal, JSXElement, Match, onMount, Switch} from "solid-js";
 import Divider from "~/components/decoration/Divider";
 
 function Platform(props: {
@@ -49,16 +49,17 @@ function Linux() {
 }
 
 export default function Download() {
-  const operatingSystem = createMemo(() => {
+  const [operatingSystem, setOperatingSystem] = createSignal();
+  onMount(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf("win") !== -1) {
-      return "Windows";
+      setOperatingSystem("Windows");
     } else if (userAgent.indexOf("mac") !== -1) {
-      return "macOS";
+      setOperatingSystem("macOS");
     } else if (userAgent.indexOf("linux") !== -1) {
-      return "Linux";
+      setOperatingSystem("Linux");
     } else {
-      return "Unknown"
+      setOperatingSystem("Unknown")
     }
   })
   return (

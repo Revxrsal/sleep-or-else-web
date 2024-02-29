@@ -49,7 +49,7 @@ function Linux() {
 }
 
 export default function Download() {
-  const [operatingSystem, setOperatingSystem] = createSignal();
+  const [operatingSystem, setOperatingSystem] = createSignal("Windows");
   onMount(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf("win") !== -1) {

@@ -63,7 +63,7 @@ export default function Download() {
     }
   })
   return (
-    <main>
+    <main class={"pb-8"}>
       <Column class={"center"}>
         <PageTitle>Download</PageTitle>
         <Header class={"text-center"}>

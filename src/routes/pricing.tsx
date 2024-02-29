@@ -5,12 +5,12 @@ import Divider from "~/components/decoration/Divider";
 import {SignUpButton} from "~/components/input/SignUpButton";
 import Column from "~/components/layout/Column";
 import Check from "~/components/icons/Check";
-import {createEffect, createSignal, JSXElement, onMount, Show} from "solid-js";
+import {createEffect, createSignal, JSXElement, onMount, Resource, Show} from "solid-js";
 import Spacer from "~/components/decoration/Spacer";
 import Badge from "~/components/decoration/Badge";
 import Cross from "~/components/icons/Cross";
 import Flex from "~/components/layout/Flex";
-import {ButtonProps} from "~/components/input/Button";
+import Button, {ButtonProps} from "~/components/input/Button";
 import PayPalButtons from "~/paypal/PayPalButtons";
 import {createSupabaseSessionResource} from "~/database/primitives";
 import {useNavigate} from "@solidjs/router";
@@ -21,6 +21,7 @@ import {CreateOrderRequestBody} from "~/routes/api/create-order";
 import {SubscriptionCreatedBody} from "~/routes/api/subscription-created";
 import {LicenseType} from "~/routes/api/types";
 import PageTitle from "~/components/meta/PageTitle";
+import {Session} from "@supabase/supabase-js";
 
 function PackFeature(props: {
   children: JSXElement
@@ -41,11 +42,11 @@ function NoPackFeature(props: {
 }
 
 function BuyNowButton(props: {
-  payPal: PayPalResource
-  class?: string
+  payPal: PayPalResource,
+  session: Resource<Session | null>,
+  class?: string,
 } & ButtonProps) {
   const navigate = useNavigate()
-  const session = createSupabaseSessionResource()
   return <PayPalButtons
     payPal={props.payPal}
     class={`mx-auto w-32 lg:w-48 mt-8 ${props.class || ""}`}
@@ -80,14 +81,18 @@ function BuyNowButton(props: {
         },
         body: JSON.stringify({
           orderId: data.orderID,
-          userId: session()?.user!.id!
+          userId: props.session()?.user!.id!
         })
       })
       navigate("/purchase-success")
     }}/>
 }
 
-function SubscribeButton(props: { planId: string, subscriptionType: LicenseType, payPal: PayPalResource }) {
+function SubscribeButton(props: {
+  planId: string,
+  subscriptionType: LicenseType,
+  payPal: PayPalResource
+}) {
   const session = createSupabaseSessionResource()
   const navigate = useNavigate()
   return <PayPalButtons
@@ -123,6 +128,7 @@ function SubscribeButton(props: { planId: string, subscriptionType: LicenseType,
 }
 
 function MonthlyPlan(props: {
+  session: Resource<Session | null>
   payPal: PayPalResource
 }) {
   return (
@@ -139,15 +145,20 @@ function MonthlyPlan(props: {
       <PackFeature>Install on unlimited computers</PackFeature>
       <PackFeature>Access to periodic updates</PackFeature>
       <PackFeature>Priority support</PackFeature>
-      <SubscribeButton
-        subscriptionType="SUBSCRIPTION_MONTHLY"
-        payPal={props.payPal} planId="P-6S924879LV528163NMXIP2UI"
-      />
+      <Show when={props.session() != null} fallback={
+        <SignUpToBuyButton>Login to subscribe</SignUpToBuyButton>
+      }>
+        <SubscribeButton
+          subscriptionType="SUBSCRIPTION_MONTHLY"
+          payPal={props.payPal} planId="P-6S924879LV528163NMXIP2UI"
+        />
+      </Show>
     </Column>
   )
 }
 
 function YearlyPlan(props: {
+  session: Resource<Session | null>
   payPal: PayPalResource
 }) {
   return (
@@ -169,16 +180,21 @@ function YearlyPlan(props: {
       <PackFeature>Install on unlimited computers</PackFeature>
       <PackFeature>Access to periodic updates</PackFeature>
       <PackFeature>Priority support</PackFeature>
-      <SubscribeButton
-        subscriptionType="SUBSCRIPTION_YEARLY"
-        payPal={props.payPal}
-        planId="P-6S924879LV528163NMXIP2UI"
-      />
+      <Show when={props.session() != null} fallback={
+        <SignUpToBuyButton>Login to subscribe</SignUpToBuyButton>
+      }>
+        <SubscribeButton
+          subscriptionType="SUBSCRIPTION_YEARLY"
+          payPal={props.payPal}
+          planId="P-6S924879LV528163NMXIP2UI"
+        />
+      </Show>
     </Column>
   )
 }
 
 function LifetimePlan(props: {
+  session: Resource<Session | null>
   payPal: PayPalResource
 }) {
   return (
@@ -195,14 +211,31 @@ function LifetimePlan(props: {
       <PackFeature>Install on unlimited computers</PackFeature>
       <PackFeature>Access to periodic updates</PackFeature>
       <NoPackFeature>Priority support</NoPackFeature>
-      <BuyNowButton payPal={props.payPal}/>
+      <Show when={props.session() == null} fallback={
+        <BuyNowButton session={props.session} payPal={props.payPal}/>
+      }>
+        <SignUpToBuyButton>Login to purchase</SignUpToBuyButton>
+      </Show>
     </Column>
+  )
+}
+
+function SignUpToBuyButton(props: { children: JSXElement }) {
+  const navigate = useNavigate()
+  return (
+    <Button
+      class={"mx-auto mt-4 w-full h-12 flex flex-row justify-between items-center align-middle"}
+      onClick={() => navigate("/login")}
+    >
+      <Pg class={"center w-full text-center text-stone-100 dark:text-stone-800"}>{props.children}</Pg>
+    </Button>
   )
 }
 
 export default function Pricing() {
   const [lifetime, setLifetime] = createSignal(false)
   const [payPal, setPayPal] = createSignal<PayPalNamespace | null>(null)
+  const session = createSupabaseSessionResource()
   onMount(async () => {
     if (lifetime())
       setPayPal((await forCheckout())!)
@@ -233,11 +266,11 @@ export default function Pricing() {
       <Flex class={"flex-col lg:flex-row center justify-around scale-[85%] lg:scale-100"}>
         <Show when={lifetime()} fallback={
           <>
-            <YearlyPlan payPal={payPal}/>
-            <MonthlyPlan payPal={payPal}/>
+            <YearlyPlan session={session} payPal={payPal}/>
+            <MonthlyPlan session={session} payPal={payPal}/>
           </>
         }>
-          <LifetimePlan payPal={payPal}/>
+          <LifetimePlan session={session} payPal={payPal}/>
         </Show>
       </Flex>
 

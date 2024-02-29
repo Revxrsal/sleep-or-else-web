@@ -3,13 +3,14 @@ import Header from "~/components/typography/Header";
 import Pg from "~/components/typography/Pg";
 import Column from "~/components/layout/Column";
 import Divider from "~/components/decoration/Divider";
-import {OutlinedButton} from "~/components/input/Button";
+import Button, {OutlinedButton} from "~/components/input/Button";
 import {useNavigate} from "@solidjs/router";
 import {SignUpButton} from "~/components/input/SignUpButton";
 import Flex from "~/components/layout/Flex";
-import {JSXElement} from "solid-js";
+import {JSXElement, Show} from "solid-js";
 import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
 import Spacer from "~/components/decoration/Spacer";
+import {createSupabaseSessionResource} from "~/database/primitives";
 
 function TiredGuy() {
   return <DisplayScreenshotWithFeatures
@@ -125,11 +126,11 @@ function FitnessArticle() {
 
 export default function Home() {
   const navigate = useNavigate()
+  const session = createSupabaseSessionResource()
   return (
     <main>
       <title>Sleep, or else - A better way to enforce sleep schedules</title>
       <Header class={"text-center text-5xl md:text-6xl lg:text-8xl mt-0"}>Sleep, or else...</Header>
-      {/*<SubscribeButton planId="P-6S924879LV528163NMXIP2UI"/>*/}
       <Pg class={"px-4 mx-auto text-center text-2xl lg:text-3xl"}>
         Stick to your sleep schedule. Reap the <HealthArticle/> and <FitnessArticle/> benefits of getting
         more sleep.
@@ -138,7 +139,11 @@ export default function Home() {
         Sign up for pre-release for a <span class={"font-bold"}>15% off</span> the first year!
       </Pg>
       <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
-        <SignUpButton/>
+        <Show when={session() == null} fallback={
+          <Button onClick={() => navigate("/pricing")}>Buy now</Button>
+        }>
+          <SignUpButton/>
+        </Show>
         <OutlinedButton onClick={() => navigate("/features", {replace: true})}>Explore features</OutlinedButton>
       </Flex>
       <Divider class={"m-12"}/>
@@ -179,9 +184,13 @@ export default function Home() {
       <Pg class={"text-center text-xl text-yellow-800 dark:text-yellow-200 mx-8"}>
         Those who sign up for pre-release get <span class={"font-bold"}>15% off</span> the first year!
       </Pg>
-      <Row class={"items-center justify-center center m-8 mx-8 scale-[85%] lg:scale-100"}>
-        <SignUpButton/>
-      </Row>
+
+      <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
+        <Show when={session() == null}>
+          <SignUpButton/>
+        </Show>
+        <Button onClick={() => navigate("/pricing", {replace: true})}>Check our plans</Button>
+      </Flex>
     </main>
   );
 }

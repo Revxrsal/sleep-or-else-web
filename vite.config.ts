@@ -6,6 +6,7 @@ export default defineConfig({
   },
 
   server: {
+    // @ts-ignore
     fs: {
       allow: ["../.."]
     }

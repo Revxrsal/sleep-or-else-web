@@ -38,6 +38,21 @@ async function saveSubscription(body: SubscriptionCreatedBody, result: BillingSu
   })
 }
 
+export async function getUserSubscription(subscriptionId: string) {
+  const response = await fetch(`${BASE_URL}/v1/billing/subscriptions/${subscriptionId}`, {
+    headers: {
+      "Authorization": authorization(),
+      "Content-Type": "application/json"
+    }
+  })
+  if (response.ok) {
+    const result: BillingSubscriptionResponse = await response.json()
+    return result
+  } else {
+    return null
+  }
+}
+
 export async function POST(event: APIEvent) {
   const body: SubscriptionCreatedBody = await event.request.json()
   const response = await fetch(`${BASE_URL}/v1/billing/subscriptions/${body.subscriptionId}`, {

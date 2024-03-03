@@ -18,7 +18,7 @@ export async function GET(event: APIEvent) {
     .limit(1)
     .eq("id", user)
 
-  if (error) {
+  if (error || !data || !data[0]) {
     console.log(error)
     return Response.json(
       {

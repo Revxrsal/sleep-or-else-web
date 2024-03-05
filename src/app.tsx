@@ -100,6 +100,11 @@ function LinksAsList() {
           session={session()}
           onClick={() => navigate("/account")}
         />
+
+        <a href="/logout">
+          <Pg class={"p-4 font-semibold"}>Log out</Pg>
+        </a>
+
       </Show>
     </>
   );

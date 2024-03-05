@@ -84,7 +84,7 @@ function LinksAsList() {
         <Pg class={"p-4 font-semibold"}>Pricing</Pg>
       </a>
 
-      <a href="/discord">
+      <a href="/routes/support">
         <Pg class={"p-4 font-semibold"}>Support</Pg>
       </a>
 

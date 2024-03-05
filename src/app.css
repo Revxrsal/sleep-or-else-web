@@ -50,7 +50,7 @@ main {
     }
 
     .center {
-        @apply items-center content-center text-center;
+        @apply items-center content-center text-center align-middle;
     }
 
     .image-non-draggable {

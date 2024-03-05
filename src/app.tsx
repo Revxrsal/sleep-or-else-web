@@ -99,7 +99,7 @@ function LinksAsList() {
           class={`mx-4 w-12 h-12
            rounded-md 
            text text-on-container 
-           select-none cursor-pointer`
+           select-none`
           }
           session={session()}
           onClick={() => navigate("/account")}

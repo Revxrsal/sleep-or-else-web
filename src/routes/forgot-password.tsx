@@ -52,14 +52,14 @@ export default function ForgotPassword() {
         />
         <Row class={"m-8"}>
           <Button
-            class={"min-w-32 px-4"}
+            class={"px-4 h-12 flex flex-row align-middle center items-center"}
             onClick={() => navigate("/login")}
           >
             Back
           </Button>
 
           <Button
-            class={"min-w-32 px-4"}
+            class={"px-4 h-12 flex flex-row align-middle center items-center"}
             onClick={send}
             disabled={!canResend()}
           >

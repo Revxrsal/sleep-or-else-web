@@ -84,6 +84,10 @@ function LinksAsList() {
         <Pg class={"p-4 font-semibold"}>Pricing</Pg>
       </a>
 
+      <a href="/discord">
+        <Pg class={"p-4 font-semibold"}>Support</Pg>
+      </a>
+
       <a href="/download">
         <Pg class={"p-4 font-semibold"}>Download</Pg>
       </a>

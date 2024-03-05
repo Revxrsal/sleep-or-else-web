@@ -10,7 +10,7 @@ interface SubscriptionResponse {
 }
 
 export async function GET(event: APIEvent) {
-  const {user} = (event.params);
+  const {user} = event.params;
 
   const supabase = createSupabaseClient(env.SUPABASE_SERVICE_ROLE)
   const {data, error} = await supabase.from("licenses")

@@ -54,6 +54,8 @@ export default function Login() {
             })
             if (result.error) {
               setError(result.error.message)
+            } else {
+              navigate("/")
             }
           }}>
           Sign in

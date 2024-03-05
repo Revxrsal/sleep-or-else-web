@@ -24,10 +24,10 @@ export default function Login() {
           Welcome back!
         </Header>
 
-        <SignInWithGoogle/>
-        <SignInWithGitHub/>
-
-        <Spacer class={"my-4"}/>
+        {/*<SignInWithGoogle/>*/}
+        {/*<SignInWithGitHub/>*/}
+        {/**/}
+        {/*<Spacer class={"my-4"}/>*/}
 
         <FormField
           label={"Email address"}

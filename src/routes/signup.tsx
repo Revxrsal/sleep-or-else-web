@@ -23,9 +23,9 @@ export default function SignUp() {
         <Header size={3} class={"text-3xl md:text-4xl lg:text-5xl"}>
           Welcome abroad!
         </Header>
-        <SignInWithGoogle/>
-        <SignInWithGitHub/>
-        <Pg class={"font-semibold my-8"}>Or sign-up with email address</Pg>
+        {/*<SignInWithGoogle/>*/}
+        {/*<SignInWithGitHub/>*/}
+        {/*<Pg class={"font-semibold my-8"}>Or sign-up with email address</Pg>*/}
         <FormField
           label={"Email address"}
           value={email()}

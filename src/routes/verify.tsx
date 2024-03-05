@@ -21,7 +21,7 @@ export default function Verify() {
         type: "signup",
         email: (await auth.getSession()).data.session?.user?.email || ""
       })
-      setTimeout(() => setCanResend(true), 60 * 1000)
+      setTimeout(() => setCanResend(true), 300 * 1000)
     }
   }
 

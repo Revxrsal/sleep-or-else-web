@@ -7,7 +7,6 @@ import Header from "~/components/typography/Header";
 import Pg from "~/components/typography/Pg";
 import {useNavigate} from "@solidjs/router";
 import FormField from "~/components/icons/FormField";
-import {SignInWithGitHub, SignInWithGoogle} from "~/components/providers/ProviderButton";
 import PageTitle from "~/components/meta/PageTitle";
 
 export default function Login() {
@@ -23,11 +22,6 @@ export default function Login() {
         <Header size={3} class={"text-3xl md:text-4xl lg:text-5xl"}>
           Welcome back!
         </Header>
-
-        {/*<SignInWithGoogle/>*/}
-        {/*<SignInWithGitHub/>*/}
-        {/**/}
-        {/*<Spacer class={"my-4"}/>*/}
 
         <FormField
           label={"Email address"}
@@ -71,6 +65,13 @@ export default function Login() {
           Don't have an account? <span
           class={"font-semibold text text-yellow-800 dark:text-yellow-200 cursor-pointer"}
           onClick={() => navigate("/signup")}>Sign up</span> instead
+        </Pg>
+
+        <Pg
+          class={"my-4 font-semibold text text-yellow-800 dark:text-yellow-200 cursor-pointer"}
+          onClick={() => navigate("/forgot-password")}
+        >
+          Forgot password?
         </Pg>
       </Column>
     </main>

@@ -14,6 +14,7 @@ export default function ForgotPassword() {
   const [email, setEmail] = createSignal("")
   const auth = useSupabaseAuth()
   const [error, setError] = createSignal("")
+  const [success, setSuccess] = createSignal(false)
   const [canResend, setCanResend] = createSignal(true)
 
   async function send() {
@@ -21,8 +22,13 @@ export default function ForgotPassword() {
     if (userEmail) {
       setCanResend(false)
       const {error} = await auth.resetPasswordForEmail(userEmail)
-      if (error)
+      if (error) {
         setError(error.message)
+        setSuccess(false)
+      } else {
+        setError("")
+        setSuccess(true)
+      }
       setTimeout(() => setCanResend(true), 300 * 1000)
     }
   }
@@ -41,6 +47,7 @@ export default function ForgotPassword() {
           onInput={v => {
             setEmail(v.target.value)
             setError("")
+            setSuccess(false)
           }}
         />
         <Row class={"m-8"}>
@@ -61,6 +68,11 @@ export default function ForgotPassword() {
         </Row>
         <Show when={error().length > 0}>
           <Pg class={"text-red-500 dark:text-red-500"}>{error()}</Pg>
+        </Show>
+        <Show when={success()}>
+          <Pg class={"text-lime-500 dark:text-red-500"}>
+            Reset link successfully sent. It may take up to 5 minutes for it to appear in your inbox.
+          </Pg>
         </Show>
       </Column>
     </main>

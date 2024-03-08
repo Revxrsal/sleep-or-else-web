@@ -8,13 +8,22 @@ import Flex from "~/components/layout/Flex";
 import {createSignal, JSXElement, Match, onMount, Switch} from "solid-js";
 import Divider from "~/components/decoration/Divider";
 
+const VERSION = "1.0.0"
+
+function createDownloadURL(extension: string) {
+  return `https://github.com/Sleep-or-else/Issues/releases/download/${VERSION}/Sleep.or.else-${VERSION}.${extension}`
+}
+
 function Platform(props: {
   icon: JSXElement,
   label: string,
-  class?: string
+  class?: string,
+  downloadURL: string
 }) {
   return (
-    <Column center class={`hover:scale-105 cursor-pointer transition-all m-8 ${props.class || ""}`}>
+    <Column
+      class={`center hover:scale-105 cursor-pointer transition-all m-8 ${props.class || ""}`}
+      onClick={() => window.open(props.downloadURL, "_blank")}>
       {props.icon}
       <Pg class={"text-xl lg:text-2xl font-semibold"}>{props.label}</Pg>
     </Column>
@@ -26,6 +35,7 @@ function Windows() {
     <Platform
       icon={<FaBrandsMicrosoft size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
       label="Download for Windows"
+      downloadURL={createDownloadURL("msi")}
     />
   )
 }
@@ -35,18 +45,19 @@ function MacOS() {
     <Platform
       icon={<FaBrandsApple size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
       label="Download for macOS"
+      downloadURL={createDownloadURL("dmg")}
     />
   )
 }
 
-function Linux() {
-  return (
-    <Platform
-      icon={<VsTerminalLinux size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
-      label="Download for Linux"
-    />
-  )
-}
+// function Linux() {
+//   return (
+//     <Platform
+//       icon={<VsTerminalLinux size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
+//       label="Download for Linux"
+//     />
+//   )
+// }
 
 export default function Download() {
   const [operatingSystem, setOperatingSystem] = createSignal("Windows");
@@ -56,8 +67,8 @@ export default function Download() {
       setOperatingSystem("Windows");
     } else if (userAgent.indexOf("mac") !== -1) {
       setOperatingSystem("macOS");
-    } else if (userAgent.indexOf("linux") !== -1) {
-      setOperatingSystem("Linux");
+    // } else if (userAgent.indexOf("linux") !== -1) {
+    //   setOperatingSystem("Linux");
     } else {
       setOperatingSystem("Unknown")
     }
@@ -78,7 +89,7 @@ export default function Download() {
                 <Divider class={"px-8 mx-8 my-12 w-full"}/>
                 <Flex class={"flex-col lg:flex-row lg:w-2/3 justify-around"}>
                   <MacOS/>
-                  <Linux/>
+                  {/*<Linux/>*/}
                 </Flex>
               </Match>
 
@@ -87,12 +98,12 @@ export default function Download() {
                 <Divider class={"mx-8 my-12 w-full"}/>
                 <Flex class={"flex-col lg:flex-row lg:w-2/3 justify-around"}>
                   <Windows/>
-                  <Linux/>
+                  {/*<Linux/>*/}
                 </Flex>
               </Match>
 
               <Match when={operatingSystem() == "Linux"}>
-                <Linux/>
+                {/*<Linux/>*/}
                 <Divider class={"mx-8 my-12 w-full"}/>
                 <Flex class={"flex-col lg:flex-row lg:w-2/3 justify-around"}>
                   <Windows/>
@@ -101,7 +112,6 @@ export default function Download() {
               </Match>
             </Switch>
           </Column>
-
         </Flex>
       </Column>
     </main>

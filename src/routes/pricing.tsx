@@ -213,7 +213,7 @@ function LifetimePlan(props: {
       <PackFeature>Full access to the browser extension</PackFeature>
       <PackFeature>Install on unlimited computers</PackFeature>
       <PackFeature>Access to periodic updates</PackFeature>
-      {/*<NoPackFeature>Priority support</NoPackFeature>*/}
+      <PackFeature>Priority support</PackFeature>
       <Show when={props.session() == null} fallback={
         <BuyNowButton session={props.session} payPal={props.payPal}/>
       }>

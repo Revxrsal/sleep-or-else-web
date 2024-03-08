@@ -135,9 +135,6 @@ export default function Home() {
         Stick to your sleep schedule. Reap the <HealthArticle/> and <FitnessArticle/> benefits of getting
         more sleep.
       </Pg>
-      <Pg class={"px-4 mx-auto text-center text-xl mt-12 text-yellow-800 dark:text-yellow-200"}>
-        Sign up for pre-release for a <span class={"font-bold"}>15% off</span> the first year!
-      </Pg>
       <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
         <Show when={session() == null} fallback={
           <Button onClick={() => navigate("/pricing")}>Buy now</Button>
@@ -181,9 +178,6 @@ export default function Home() {
       <Header size={3} class={"text-center lg:text-5xl"}>
         Sign up for pre-release now, and be an early adopter!
       </Header>
-      <Pg class={"text-center text-xl text-yellow-800 dark:text-yellow-200 mx-8"}>
-        Those who sign up for pre-release get <span class={"font-bold"}>15% off</span> the first year!
-      </Pg>
 
       <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
         <Show when={session() == null}>

@@ -150,7 +150,7 @@ function MonthlyPlan(props: {
       }>
         <SubscribeButton
           subscriptionType="SUBSCRIPTION_MONTHLY"
-          payPal={props.payPal} planId="P-6S924879LV528163NMXIP2UI"
+          payPal={props.payPal} planId="P-2YH719853Y306472FMXIH7RQ"
         />
       </Show>
     </Column>
@@ -188,7 +188,7 @@ function YearlyPlan(props: {
         <SubscribeButton
           subscriptionType="SUBSCRIPTION_YEARLY"
           payPal={props.payPal}
-          planId="P-6S924879LV528163NMXIP2UI"
+          planId="P-47094394C8421183TMXIH5ZY"
         />
       </Show>
     </Column>

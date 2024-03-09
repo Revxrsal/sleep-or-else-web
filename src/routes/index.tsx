@@ -11,6 +11,7 @@ import {JSXElement, Show} from "solid-js";
 import {DisplayScreenshotWithFeatures} from "~/components/layout/DisplayScreenshotWithFeatures";
 import Spacer from "~/components/decoration/Spacer";
 import {createSupabaseSessionResource} from "~/database/primitives";
+import Badge from "~/components/decoration/Badge";
 
 function TiredGuy() {
   return <DisplayScreenshotWithFeatures
@@ -52,13 +53,18 @@ function Screenshot(
     src: string,
     description?: string,
     class?: string,
-    alt?: string
+    alt?: string,
+    wip?: boolean
   }
 ) {
   return <Column class={"m-6 lg:m-12 mt-0 lg:mt-0 center"}>
+    <Show when={props.wip === true}>
+      <Badge class={"scale-150 m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge>
+    </Show>
     <Header size={3} class={"text-center text-3xl lg:text-6xl m-4 lg:m-8"}>
       {props.label}
     </Header>
+
     {props.description && <Pg class={"text-xl lg:text-3xl text-center"}>{props.description}</Pg>}
     <img src={props.src}
          alt={props.alt}
@@ -168,6 +174,7 @@ export default function Home() {
       <Screenshot
         label={"Create sleep rituals"}
         src={"https://i.imgur.com/bmIUVGN.png"}
+        wip={true}
         description={"Change your wallpaper and system colors near sleep time, as a signal to wrap up your day"}
       />
       <Screenshot

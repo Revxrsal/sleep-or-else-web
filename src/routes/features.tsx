@@ -93,14 +93,16 @@ export default function Features() {
         <Column>
           <Row class={"items-center"}>
             <Header class={"text-center my-4 me-6"} size={4}>
+              <Badge class={"m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge>
               Create sleep rituals
             </Header>
-            <Badge>NEW!</Badge>
           </Row>
-          <Feature>Change the wallpaper when it's near bedtime</Feature>
-          <Feature>Change the system colors when it's near bedtime</Feature>
           <Feature>
-            <Badge class={"m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge> Play white noise
+            Change the wallpaper when it's near bedtime</Feature>
+          <Feature>
+            Change the system colors when it's near bedtime</Feature>
+          <Feature>
+            Play white noise
           </Feature>
         </Column>
       </DisplayScreenshotWithFeatures>

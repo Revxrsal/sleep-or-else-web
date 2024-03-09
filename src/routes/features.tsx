@@ -52,7 +52,7 @@ export default function Features() {
 
       <DisplayScreenshotWithFeatures
         alternateIndex={alternateIndex++}
-        image={<img src="https://i.imgur.com/jVoLkGI.png" alt="Blocks" class={""}/>}
+        image={<img src="https://i.imgur.com/7m5o1Q6.png" alt="Blocks" class={""}/>}
       >
         <Column>
           <Header class={"text-center my-4"} size={4}>

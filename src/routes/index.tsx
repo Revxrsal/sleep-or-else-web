@@ -168,7 +168,7 @@ export default function Home() {
       />
       <Screenshot
         label={"Establish the rules beforehand"}
-        src={"https://i.imgur.com/zb9yG49.png"}
+        src={"https://i.imgur.com/RKDbevH.png"}
         description={"Restrict the applications and websites you can access near bedtime"}
       />
       <Screenshot

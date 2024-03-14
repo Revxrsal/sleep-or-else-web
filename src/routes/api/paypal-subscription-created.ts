@@ -15,11 +15,22 @@ type BillingSubscriptionResponse = paths["/v1/billing/subscriptions/{id}"]["get"
 
 async function saveSubscription(body: SubscriptionCreatedBody, result: BillingSubscriptionResponse) {
   const supabase = createSupabaseClient(env.SUPABASE_SERVICE_ROLE)
+  if (body.subscriptionType != "SUBSCRIPTION_YEARLY" && body.subscriptionType != "SUBSCRIPTION_MONTHLY") {
+    return Response.json({
+      success: false
+    }, {
+      status: 400,
+      statusText: "Subscription type must be either SUBSCRIPTION_YEARLY or SUBSCRIPTION_MONTHLY"
+    })
+  }
   const response = await supabase.from("licenses").insert(
     {
       id: body.userId,
-      paypal_id: result.id!,
-      license_type: body.subscriptionType
+      bought_from: "PAYPAL",
+      license_type: body.subscriptionType,
+      purchase_data: {
+        id: result.id!,
+      }
     }
   )
   if (response.error) {

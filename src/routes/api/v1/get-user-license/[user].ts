@@ -2,7 +2,7 @@ import {components} from "@paypal/paypal-js/types/apis/openapi/billing_subscript
 import {APIEvent} from "@solidjs/start/server/types";
 import {createSupabaseClient} from "~/database/client";
 import {env} from "~/routes/api/environment";
-import {getUserSubscription} from "~/routes/api/subscription-created";
+import {getUserSubscription} from "~/routes/api/paypal-subscription-created";
 
 interface SubscriptionResponse {
   hasLicense: boolean,

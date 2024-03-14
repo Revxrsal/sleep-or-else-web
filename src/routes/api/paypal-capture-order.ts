@@ -10,8 +10,11 @@ async function saveOrder(body: OrderCaptureResponse, userId: string) {
   const response = await supabase.from("licenses").insert(
     {
       id: userId,
-      paypal_id: body.id!,
-      license_type: "LIFETIME"
+      bought_from: "PAYPAL",
+      license_type: "LIFETIME",
+      purchase_data: {
+        id: body.id!
+      }
     }
   )
   if (response.error) {
@@ -30,14 +33,14 @@ async function saveOrder(body: OrderCaptureResponse, userId: string) {
   })
 }
 
-interface CaptureOrder {
+interface PaypalCaptureOrder {
   orderId: string,
   userId: string
 }
 
 export async function POST(event: APIEvent) {
   const {access_token: accessToken} = await getAuthToken();
-  const {orderId, userId}: CaptureOrder = await event.request.json()
+  const {orderId, userId}: PaypalCaptureOrder = await event.request.json()
 
   const response = await fetch(`${BASE_URL}/v2/checkout/orders/${orderId}/capture`, {
     method: "POST",

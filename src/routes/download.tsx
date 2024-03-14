@@ -2,11 +2,10 @@ import PageTitle from "~/components/meta/PageTitle";
 import Column from "~/components/layout/Column";
 import Header from "~/components/typography/Header";
 import {FaBrandsApple, FaBrandsMicrosoft} from "solid-icons/fa";
-import Pg from "~/components/typography/Pg";
-import {VsTerminalLinux} from "solid-icons/vs";
 import Flex from "~/components/layout/Flex";
-import {createSignal, JSXElement, Match, onMount, Switch} from "solid-js";
+import {createSignal, Match, onMount, Switch} from "solid-js";
 import Divider from "~/components/decoration/Divider";
+import DownloadURL from "~/components/input/DownloadURL";
 
 const VERSION = "1.0.0"
 
@@ -14,25 +13,9 @@ function createDownloadURL(extension: string) {
   return `https://github.com/Sleep-or-else/Issues/releases/download/${VERSION}/Sleep.or.else-${VERSION}.${extension}`
 }
 
-function Platform(props: {
-  icon: JSXElement,
-  label: string,
-  class?: string,
-  downloadURL: string
-}) {
-  return (
-    <Column
-      class={`center hover:scale-105 cursor-pointer transition-all m-8 ${props.class || ""}`}
-      onClick={() => window.open(props.downloadURL, "_blank")}>
-      {props.icon}
-      <Pg class={"text-xl lg:text-2xl font-semibold"}>{props.label}</Pg>
-    </Column>
-  )
-}
-
 function Windows() {
   return (
-    <Platform
+    <DownloadURL
       icon={<FaBrandsMicrosoft size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
       label="Download for Windows"
       downloadURL={createDownloadURL("msi")}
@@ -42,7 +25,7 @@ function Windows() {
 
 function MacOS() {
   return (
-    <Platform
+    <DownloadURL
       icon={<FaBrandsApple size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
       label="Download for macOS"
       downloadURL={createDownloadURL("dmg")}
@@ -52,7 +35,7 @@ function MacOS() {
 
 // function Linux() {
 //   return (
-//     <Platform
+//     <DownloadURL
 //       icon={<VsTerminalLinux size={72} class="m-8 fill-stone-800 dark:fill-yellow-200"/>}
 //       label="Download for Linux"
 //     />

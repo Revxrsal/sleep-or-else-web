@@ -18,7 +18,7 @@ import {forCheckout, forSubscriptions, PayPalResource} from "~/paypal/paypal";
 import SwitchButton from "~/components/input/SwitchButton";
 import {PayPalNamespace} from "@paypal/paypal-js";
 import {CreateOrderRequestBody} from "~/routes/api/create-order";
-import {SubscriptionCreatedBody} from "~/routes/api/subscription-created";
+import {SubscriptionCreatedBody} from "~/routes/api/paypal-subscription-created";
 import {LicenseType} from "~/routes/api/types";
 import PageTitle from "~/components/meta/PageTitle";
 import {Session} from "@supabase/supabase-js";
@@ -74,7 +74,7 @@ function BuyNowButton(props: {
       });
     }}
     onApprove={async (data, _actions) => {
-      await fetch("/api/capture-order", {
+      await fetch("/api/paypal-capture-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

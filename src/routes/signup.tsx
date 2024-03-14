@@ -25,6 +25,7 @@ export default function SignUp() {
 
         <FormField
           label={"Email address"}
+          type={"email"}
           value={email()}
           onInput={v => {
             setEmail(v.target.value)

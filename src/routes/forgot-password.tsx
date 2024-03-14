@@ -43,6 +43,7 @@ export default function ForgotPassword() {
 
         <FormField
           label={"Email address"}
+          type={"email"}
           value={email()}
           onInput={v => {
             setEmail(v.target.value)

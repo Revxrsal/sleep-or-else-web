@@ -25,6 +25,7 @@ export default function Login() {
 
         <FormField
           label={"Email address"}
+          type={"email"}
           value={email()}
           onInput={v => {
             setEmail(v.target.value)

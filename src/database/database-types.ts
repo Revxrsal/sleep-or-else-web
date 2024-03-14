@@ -11,19 +11,22 @@ export type Database = {
     Tables: {
       licenses: {
         Row: {
+          bought_from: Database["public"]["Enums"]["Purchase Site"]
           id: string
           license_type: Database["public"]["Enums"]["License"]
-          paypal_id: string
+          purchase_data: Json
         }
         Insert: {
+          bought_from: Database["public"]["Enums"]["Purchase Site"]
           id: string
           license_type: Database["public"]["Enums"]["License"]
-          paypal_id: string
+          purchase_data: Json
         }
         Update: {
+          bought_from?: Database["public"]["Enums"]["Purchase Site"]
           id?: string
           license_type?: Database["public"]["Enums"]["License"]
-          paypal_id?: string
+          purchase_data?: Json
         }
         Relationships: []
       }
@@ -36,6 +39,7 @@ export type Database = {
     }
     Enums: {
       License: "SUBSCRIPTION_MONTHLY" | "SUBSCRIPTION_YEARLY" | "LIFETIME"
+      "Purchase Site": "MANUALLY_ADDED" | "PAYPAL" | "GUMROAD" | "LEMON_SQUEEZY"
     }
     CompositeTypes: {
       [_ in never]: never

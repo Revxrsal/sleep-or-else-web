@@ -95,7 +95,7 @@ function WhatItDoes() {
         <Header class={"text-center text-5xl lg:text-7xl"}>What it does</Header>
         <Column class={"justify-around "}>
             <WIDPart index={index++} src={"/clock.png"} alt={"Time"}>
-                Set the time you want to sleep in
+                Set the time you want to sleep in, or set a sleep improvement plan
             </WIDPart>
             <WIDPart index={index++} src={"/barrier.png"} alt={"Blocking apps"}>
                 Before this time comes, your computer will enter a restriction

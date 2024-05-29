@@ -52,7 +52,7 @@ export default function Features() {
 
       <DisplayScreenshotWithFeatures
         alternateIndex={alternateIndex++}
-        image={<img src="https://i.imgur.com/ilRi6JM.png" alt="Blocks" class={""}/>}
+        image={<img src="https://i.imgur.com/Q4HLPXA.png" alt="Blocks" class={""}/>}
       >
         <Column>
           <Header class={"text-center my-4"} size={4}>
@@ -70,7 +70,7 @@ export default function Features() {
 
       <DisplayScreenshotWithFeatures
         alternateIndex={alternateIndex++}
-        image={<img src="https://i.imgur.com/k5BvFCX.png" alt="Restrictions" class={""}/>}
+        image={<img src="https://i.imgur.com/G0WJfTq.png" alt="Restrictions" class={""}/>}
       > <Column>
         <Header class={"text-center my-4"} size={4}>
           Customize the restrictiveness
@@ -88,22 +88,17 @@ export default function Features() {
 
       <DisplayScreenshotWithFeatures
         alternateIndex={alternateIndex++}
-        image={<img src={"https://i.imgur.com/bmIUVGN.png"} alt="Create rituals"
+        image={<img src={"https://i.imgur.com/V9RlpLV.png"} alt="Create rituals"
                     class={"rounded-lg drop-shadow-2xl"}/>}>
         <Column>
           <Row class={"items-center"}>
             <Header class={"text-center my-4 me-6"} size={4}>
-              <Badge class={"m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge>
-              Create sleep rituals
+              Fix your sleep schedule
             </Header>
           </Row>
-          <Feature>
-            Change the wallpaper when it's near bedtime</Feature>
-          <Feature>
-            Change the system colors when it's near bedtime</Feature>
-          <Feature>
-            Play white noise
-          </Feature>
+          <Feature>Shift your bedtime by a little everyday</Feature>
+          <Feature>Or, set a strict bedtime</Feature>
+          <Feature>Know how much it will take to fix your sleep schedule</Feature>
         </Column>
       </DisplayScreenshotWithFeatures>
 
@@ -111,7 +106,7 @@ export default function Features() {
 
       <DisplayScreenshotWithFeatures
         alternateIndex={alternateIndex++}
-        image={<img src={"https://i.imgur.com/jaaXftv.png"} alt="Cross-platform" class={"rounded-lg"}/>}>
+        image={<img src={"https://i.imgur.com/I5nAncK.png"} alt="Cross-platform" class={"rounded-lg"}/>}>
         <Column>
           <Row class={"items-center"}>
             <Header class={"text-center my-4 me-6"} size={4}>
@@ -124,10 +119,6 @@ export default function Features() {
           </Platform>
           <Platform>
             Tested on macOS Ventura
-          </Platform>
-          <Platform>
-            <Badge class={"m-2 text-purple-100 bg-purple-600 dark:bg-purple-600"}>WIP</Badge>
-            Tested on Fedora Workstation 39
           </Platform>
         </Column>
       </DisplayScreenshotWithFeatures>

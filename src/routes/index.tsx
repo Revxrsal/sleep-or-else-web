@@ -186,15 +186,17 @@ export default function Home() {
                 src={"https://i.imgur.com/o2GWh1F.gif"}
                 description={"A bit of firmness is necessary sometimes!"}
             />
-            <Header size={3} class={"text-center lg:text-5xl"}>
-                Sign up for pre-release now, and be an early adopter!
-            </Header>
-
+            <Header class={"text-center"}>Not convinced yet?</Header>
+            <Pg class={"text-center text-xl text-yellow-800 dark:text-yellow-200 mx-8"}>
+                Get <span class={"font-bold"}>14 days</span> of free trial in any of our subscription plans
+            </Pg>
             <Flex class={"flex-col lg:flex-row px-3 items-center justify-center center m-8 scale-[85%] lg:scale-100"}>
                 <Show when={session() == null}>
                     <SignUpButton/>
                 </Show>
-                <Button onClick={() => navigate("/pricing", {replace: true})}>Check our plans</Button>
+                <Button onClick={() => {
+                    navigate("/pricing")
+                }}>See our plans</Button>
             </Flex>
         </main>
     );

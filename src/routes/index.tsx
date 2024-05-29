@@ -168,8 +168,8 @@ export default function Home() {
             />
             <Screenshot
                 label={"Or, fix your sleep"}
-                src={"https://i.imgur.com/PzycxQS.png"}
-                description={"Set the time your computer will shut-down"}
+                src={"https://i.imgur.com/V9RlpLV.png"}
+                description={"Shift your bedtime by a little everyday to seamlessly fix your sleep schedule"}
             />
             <Screenshot
                 label={"Ease into sleep"}
